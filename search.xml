@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>HTTP协议学习小记</title>
+      <link href="/2020/03/11/HTTP%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%E5%B0%8F%E8%AE%B0/"/>
+      <url>/2020/03/11/HTTP%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%E5%B0%8F%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="协议概念"><a href="#协议概念" class="headerlink" title="协议概念"></a>协议概念</h1><p>HTTP 超文本传输协议 Hyper Text Transfer Protocol</p><p>协议就是不同的应用程序之间按照事先做好的约定进行的通信。</p><p>浏览器和WEB服务器之间，使用的就是一种叫做HTTP的协议。 这样是BS (Browser Server )架构模型的基础。</p><p>HTTP协议由请求和响应两种类型组成</p><p><img src="1.png" alt="1"></p><h1 id="调试工具"><a href="#调试工具" class="headerlink" title="调试工具"></a>调试工具</h1><p>对于HTTP协议的学习，我们将借助火狐浏览器FIREFOX的调试工具或者CHROME来实际观察浏览器和服务器之间传输数据的具体内容。</p><p>以Geogle Chrome浏览器为例。</p><p>快捷键 F12</p><p><img src="2.png" alt="2"></p><p>打开某个网页，就可以看到浏览器和服务器传输的协议内容了。</p><p><img src="3.png" alt="3"></p><h1 id="请求协议"><a href="#请求协议" class="headerlink" title="请求协议"></a>请求协议</h1><p>请求消息 由 请求行，请求头部，空行和请求数据4部分组成。</p><h3 id="请求行"><a href="#请求行" class="headerlink" title="请求行"></a>请求行</h3><p>打开网页 ，并新增一条数据</p><p>请求地址：<a href="http://www.sonder.icu/jsp6/dologin.jsp" target="_blank" rel="noopener">http://www.sonder.icu/jsp6/dologin.jsp</a></p><p>提交方式：POST</p><p><img src="4.png" alt="4"></p><h3 id="请求头部"><a href="#请求头部" class="headerlink" title="请求头部"></a>请求头部</h3><p>请求头部信息提供了如下信息:</p><p><img src="5.png" alt="5"></p><h3 id="请求数据"><a href="#请求数据" class="headerlink" title="请求数据"></a>请求数据</h3><p>提交的数据</p><p><img src="6.png" alt="6"></p><p>可以看到本次提交数据所传递的参数</p><p><img src="7.png" alt="7"></p><h1 id="响应协议"><a href="#响应协议" class="headerlink" title="响应协议"></a>响应协议</h1><p>响应信息由状态行，消息报头，响应正文组成。</p><h3 id="状态行"><a href="#状态行" class="headerlink" title="状态行"></a>状态行</h3><p>访问页面</p><p><img src="8.png" alt="8"></p><p>可以看到响应代码是 OK 200，即表示响应成功</p><p><img src="9.png" alt="9"></p><h3 id="消息报头"><a href="#消息报头" class="headerlink" title="消息报头"></a>消息报头</h3><p>消息报头中提供如下信息：</p><p>Content-Length: 表示长度</p><p>Content-Type: 内容格式</p><p>Date: 日期</p><p><img src="10.png" alt="10"></p><h3 id="响应正文"><a href="#响应正文" class="headerlink" title="响应正文"></a>响应正文</h3><p>如图所示，在响应正文里就会是具体的html内容了。</p><p>当然访问不同的页面，就不一定是html，有可能是css, js,甚至图片了。</p><p><img src="11.png" alt="11"></p><h1 id="响应代码"><a href="#响应代码" class="headerlink" title="响应代码"></a>响应代码</h1><p>各种页面跳转响应的代码。</p><h3 id="200"><a href="#200" class="headerlink" title="200"></a>200</h3><p>表示响应成功了，比如打开页面, 就会看到200响应码。</p><p><img src="9.png" alt="9"></p><h3 id="301"><a href="#301" class="headerlink" title="301"></a>301</h3><p>表示客户端跳转，永久性的跳转</p><h3 id="302"><a href="#302" class="headerlink" title="302"></a>302</h3><p>客户端跳转，临时性的跳转</p><h3 id="304"><a href="#304" class="headerlink" title="304"></a>304</h3><p>表示资源未被修改</p><p>当不是第一次访问一个静态页面或者图片的时候，就会得到这么一个提示。这是服务端提示浏览器，这个资源没有发生改变，你直接使用上一次下载的就行了，不需要重新下载。 这样就节约了带宽，并且浏览器的加载速度也更快。</p><h3 id="404"><a href="#404" class="headerlink" title="404"></a>404</h3><p>表示访问的页面不存在</p><p>这是一个不存在的页面，就会得到404响应码。<br>这表示一个浏览器的错误，就是服务端没提供这个服务，但是你却去访问。 这个锅要算到浏览器头上，不能算在服务器头上。</p><p>当然，有的时候是因为服务器没有配置这个路径，所以浏览器访问不到对应的资源。 </p><h3 id="500"><a href="#500" class="headerlink" title="500"></a>500</h3><p>表示服务端的错误</p><h3 id="更多代码一一览。。。"><a href="#更多代码一一览。。。" class="headerlink" title="更多代码一一览。。。"></a>更多代码一一览。。。</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 知识总结 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> HTTP协议 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>两个月的作品展示</title>
       <link href="/2020/03/10/%E4%B8%A4%E4%B8%AA%E6%9C%88%E7%9A%84%E4%BD%9C%E5%93%81%E5%B1%95%E7%A4%BA/"/>
       <url>/2020/03/10/%E4%B8%A4%E4%B8%AA%E6%9C%88%E7%9A%84%E4%BD%9C%E5%93%81%E5%B1%95%E7%A4%BA/</url>
