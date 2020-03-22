@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="keyword"  content="Ty, blog">
+    <link rel="shortcut icon" href="/img/man1.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          Hibernate的配置与使用 - Ty&#39;blog
+        
+    </title>
+
+    <link rel="canonical" href="https://dusign.net/2020/03/22/Hibernate的配置与使用/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-dark.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-dark.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('head.jpg')
+                /*post*/
+            
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/Just-do-it-white.png');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Mysql" title="Mysql">Mysql</a>
+                            
+                              <a class="tag" href="/tags/#Java框架" title="Java框架">Java框架</a>
+                            
+                        </div>
+                        <h1>Hibernate的配置与使用</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by QJY on
+                            2020-03-22
+                        </span>
+
+                        
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                Words <span class="post-count">3.4k</span> and
+                                Reading Time <span class="post-count">14</span> Minutes
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-dark.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-dark.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">TY&#39;BLOG</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/categories/">Categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/photography/">Photography</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="Hibernate简介"><a href="#Hibernate简介" class="headerlink" title="Hibernate简介"></a>Hibernate简介</h1><p>Hibernate是一个开放源代码的对象关系映射框架，它对JDBC进行了非常轻量级的对象封装，它将POJO与数据库表建立映射关系，是一个全自动的orm框架，hibernate可以自动生成SQL语句，自动执行。</p>
+<h2 id="ORM"><a href="#ORM" class="headerlink" title="ORM"></a>ORM</h2><p>对象关系映射（英语：Object Relation Mapping，简称ORM，或O/RM，或O/R mapping），是一种程序技术，用于实现面向对象编程语言里不同类型系统的数据之间的转换。</p>
+<h2 id="Hibernate优势"><a href="#Hibernate优势" class="headerlink" title="Hibernate优势"></a>Hibernate优势</h2><ul>
+<li>Hibernate对JDBC访问数据库的代码做了封装，大大简化了数据访问层繁琐的重复性代码。</li>
+<li>Hibernate是一个基于JDBC的主流持久化框架，是一个优秀的ORM实现，它很大程度的简化了dao层编码工作。</li>
+</ul>
+<h1 id="Hibernate配置"><a href="#Hibernate配置" class="headerlink" title="Hibernate配置"></a>Hibernate配置</h1><h2 id="Hibernate配置文件"><a href="#Hibernate配置文件" class="headerlink" title="Hibernate配置文件"></a>Hibernate配置文件</h2><p>实现Hibernate基础配置，是Hibernate能够友好的与DB进行交互基础；<br>开发时放置src目录下,取名为：hibernate.cfg.xml(hibernate.properties)。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 指定Hibernate配置文件的DTD信息 --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">hibernate-configuration</span> <span class="meta-keyword">PUBLIC</span></span></span><br><span class="line"><span class="meta">    <span class="meta-string">"-//Hibernate/Hibernate Configuration DTD 3.0//EN"</span></span></span><br><span class="line"><span class="meta">    <span class="meta-string">"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- hibernate- configuration是连接配置文件的根元素 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hibernate-configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">session-factory</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!--配置一：数据库连接信息 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 指定连接数据库所用的驱动 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"connection.driver_class"</span>&gt;</span>com.mysql.jdbc.Driver<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 指定连接数据库的url，hibernate连接的数据库名 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"connection.url"</span>&gt;</span>jdbc:mysql://localhost:3306/shopping?characterEncoding=UTF-8<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 指定连接数据库的用户名 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"connection.username"</span>&gt;</span>root<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 指定连接数据库的密码 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"connection.password"</span>&gt;</span>123456<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!--配置二:数据库方言配置，配置数据库方言的作用是屏蔽数据库的差异，换句话说是使hibernate框架知道 要与哪种数据库取得联系（可以省略，但建议配置） --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.dialect"</span>&gt;</span>org.hibernate.dialect.MySQLDialect<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!--配置三：其它配置 （这些配置可选） --&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 是否在控制台显示sql语句 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.show_sql"</span>&gt;</span>true<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--是否格式化删除sql语句 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.format_sql"</span>&gt;</span>true<span class="tag">&lt;/<span class="name">property</span>&gt;</span>	</span><br><span class="line">	<span class="comment">&lt;!-- 自动生成数据表（数据表的生成方式） --&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">        create：先删除数据表然后再创建表  </span></span><br><span class="line"><span class="comment">        update：表不存在就创建，内容不一样就更新。</span></span><br><span class="line"><span class="comment">        create-drop：初始化时创建数据表（每次加载主配置文件时生成表），sessionfactory close时删除。  </span></span><br><span class="line"><span class="comment">        validate：验证表结构是否一致（每次加载hibernate时，验证创建数据库表结构，只会和数据库中的表进行比较，不会创建新表，但是会插入新值）</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hbm2ddl.auto"</span>&gt;</span>update<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 将session绑定到当前线程 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.current_session_context_class"</span>&gt;</span>thread<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 设置事务的隔离级别 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.connection.isolation"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	<span class="comment">&lt;!-- 配置四：映射配置 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 罗列所有的映射文件 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapping</span> <span class="attr">resource</span>=<span class="string">"映射文件路径/News.hbm.xml"</span>/&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 基于注解的配置方式 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">mapping</span> <span class="attr">class</span>=<span class="string">"cn.sz.entity.Dept"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">session-factory</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">hibernate-configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Hibernate映射文件"><a href="#Hibernate映射文件" class="headerlink" title="Hibernate映射文件"></a>Hibernate映射文件</h2><p>实现POJO与DB表格的映射配置；为了维护方便一般将其放置和相对应的POJO同一目录下，取名为POJOName.hbm.xml。虽然一个映射文件中可以配置多个POJO与数据库表的映射关系但是还是建议一个映射文件中只配置一个POJO与数据库表的映射关系。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">hibernate-mapping</span> <span class="meta-keyword">PUBLIC</span> </span></span><br><span class="line"><span class="meta">    <span class="meta-string">"-//Hibernate/Hibernate Mapping DTD 3.0//EN"</span></span></span><br><span class="line"><span class="meta">    <span class="meta-string">"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"</span>&gt;</span>    </span><br><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">    &lt;hibernate-mapping&gt;一般不去配置，采用默认即可。</span></span><br><span class="line"><span class="comment">    schema:指定映射数据库的schema(模式/数据库)，如果指定该属性，则表名会自动添加该schema前缀。</span></span><br><span class="line"><span class="comment">    package:指定包前缀 指定持久化类所在的包名 这样之后calss子元素中就不必使用全限定性的类名。</span></span><br><span class="line"><span class="comment">    default-cascade="none"：默认的级联风格，表与表联动。</span></span><br><span class="line"><span class="comment">    default-lazy="true"：默认延迟加载。</span></span><br><span class="line"><span class="comment"> --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hibernate-mapping</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">        &lt;class&gt;：使用class元素定义一个持久化类。</span></span><br><span class="line"><span class="comment">        name="cn.javass.user.vo.UserModel"：持久化类的java全限定名；</span></span><br><span class="line"><span class="comment">        table="tbl_user"：对应数据库表名，默认持久化类名作为表名；</span></span><br><span class="line"><span class="comment">        proxy:指定一个接口，在延迟装载时作为代理使用，也可在这里指定该类自己的名字。</span></span><br><span class="line"><span class="comment">        mutable="true"：默认为true，设置为false时则不可以被应用程序更新或删除，等价于所有&lt;property&gt;元素的update属性为false，表示整个实例不能被更新。</span></span><br><span class="line"><span class="comment">        dynamic-insert="false"：默认为false，动态修改那些有改变过的字段，而不用修改所有字段；</span></span><br><span class="line"><span class="comment">        dynamic-update="false"：默认为false，动态插入非空值字段；</span></span><br><span class="line"><span class="comment">        select-before-update="false"：默认为false，在修改之前先做一次查询，与用户的值进行对比，有变化都会真正更新；</span></span><br><span class="line"><span class="comment">        optimistic-lock="version"：默认为version(检查version/timestamp字段)，取值：all(检查全部字段)、dirty(只检查修改过的字段)；</span></span><br><span class="line"><span class="comment">        none(不使用乐观锁定)，此参数主要用来处理并发，每条值都有固定且唯一的版本，版本为最新时才能执行操作；如果需要采用继承映射，则class元素下还会增加&lt;subclass.../&gt;元素等用于定义子类。</span></span><br><span class="line"><span class="comment">     --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">class</span> <span class="attr">name</span>=<span class="string">"cn.javass.user.vo.UserModel"</span> <span class="attr">table</span>=<span class="string">"tbl_user"</span> &gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">            &lt;id&gt;：定义了该属性到数据库表主键字段的映射。</span></span><br><span class="line"><span class="comment">            type  指定该标识属性的数据类型，该类型可以是Hibernate的内建类型，也可以是java类型，如果是java类型则需要使用全限定类名（带包名）。该属性可选，如果没有指定类型， 则hibernate自行判断该标识属性数据类型。通常建议设定。</span></span><br><span class="line"><span class="comment">            name="userId"：标识属性的名字；</span></span><br><span class="line"><span class="comment">            column="userId"：表主键字段的名字，如果不填写与name一样；</span></span><br><span class="line"><span class="comment">         --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">name</span>=<span class="string">"userId"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">                &lt;generator&gt;：指定主键由什么生成，推荐使用uuid，assigned指用户手工填入。设定标识符生成器适应代理主键的有：</span></span><br><span class="line"><span class="comment">                increment：有Hibernat自动以递增的方式生成标识符，每次增量1；</span></span><br><span class="line"><span class="comment">                identity：由底层数据库生成标识符，前提条件是底层数据库支持自动增长字段类型。（DB2,MYSQL）</span></span><br><span class="line"><span class="comment">                uuid:用128位的UUID算法生成字符串类型标识符。</span></span><br><span class="line"><span class="comment">                适应自然主键：assigned:由java程序负责生成标识符，为了能让java应用程序设置OID,不能把setId（）方法设置成private类型。</span></span><br><span class="line"><span class="comment">                让应用程序在save()之前为对象分配一个标识符。相当于不指定&lt;generator.../&gt;元素时所采用的默认策略。应当尽量避免自然主键</span></span><br><span class="line"><span class="comment">            --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">generator</span> <span class="attr">class</span>=<span class="string">"uuid"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">            &lt;version/&gt;：使用版本控制来处理并发，要开启optimistic-lock="version"和dynamic-update="true"。</span></span><br><span class="line"><span class="comment">            name="version"：持久化类的属性名，column="version"：指定持有版本号的字段名；</span></span><br><span class="line"><span class="comment">         --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span> <span class="attr">name</span>=<span class="string">"version"</span> <span class="attr">column</span>=<span class="string">"version"</span>/&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">            &lt;property&gt;：为类定义一个持久化的javaBean风格的属性。</span></span><br><span class="line"><span class="comment">            name="name"：标识属性的名字，以小写字母开头；</span></span><br><span class="line"><span class="comment">            column="name"：表主键字段的名字，如果不填写与name一样；</span></span><br><span class="line"><span class="comment">            update="true"/insert="true"：默认为true，表示可以被更新或插入；</span></span><br><span class="line"><span class="comment">            access="property/field"：指定Hibernate访问持久化类属性的方式。默认property。property表示使用setter/getter方式。field表示运用java反射机制直接访问类的属性。</span></span><br><span class="line"><span class="comment">            formula="&#123;select。。。。。&#125;"：该属性指定一个SLQ表达式，指定该属性的值将根据表达式类计算，计算属性没有和它对应的数据列。</span></span><br><span class="line"><span class="comment">            formula属性允许包含表达式：sum,average,max函数求值的结果。</span></span><br><span class="line"><span class="comment">            例如：formula="(select avg(p.price) from Product P)"</span></span><br><span class="line"><span class="comment">         --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">column</span>=<span class="string">"name"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sex"</span> <span class="attr">column</span>=<span class="string">"sex"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">column</span>=<span class="string">"age"</span>/&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">            组件映射：把多个属性打包在一起当一个属性使用，用来把类的粒度变小。</span></span><br><span class="line"><span class="comment">            &lt;component name="属性，这里指对象"&gt;</span></span><br><span class="line"><span class="comment">                 &lt;property name="name1"&gt;&lt;/property&gt;</span></span><br><span class="line"><span class="comment">                 &lt;property name="name2"&gt;&lt;/property&gt;</span></span><br><span class="line"><span class="comment">             &lt;/component&gt;</span></span><br><span class="line"><span class="comment">         --&gt;</span></span><br><span class="line">         </span><br><span class="line">         <span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">             &lt;join&gt;:一个对象映射多个表，该元素必须放在所有&lt;property&gt;之后。</span></span><br><span class="line"><span class="comment">             &lt;join table="tbl_test：子表名"&gt;</span></span><br><span class="line"><span class="comment">             &lt;key column="uuid：子表主键"&gt;&lt;/key&gt;</span></span><br><span class="line"><span class="comment">             &lt;property name="name1：对象属性" column="name：子表字段"&gt;&lt;/property&gt;</span></span><br><span class="line"><span class="comment">         &lt;/join&gt;</span></span><br><span class="line"><span class="comment">          --&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;/<span class="name">class</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="name">hibernate-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="Hibernate使用步骤"><a href="#Hibernate使用步骤" class="headerlink" title="Hibernate使用步骤"></a>Hibernate使用步骤</h1><h2 id="创建configuration对象"><a href="#创建configuration对象" class="headerlink" title="创建configuration对象"></a>创建configuration对象</h2><p><code>Configuration cfg = new Configuration();</code></p>
+<h2 id="加载hibernate-cfg-xml"><a href="#加载hibernate-cfg-xml" class="headerlink" title="加载hibernate.cfg.xml"></a>加载hibernate.cfg.xml</h2><p><code>cfg.configure(&quot;/hibernate.cfg.xml&quot;);</code>    </p>
+<h2 id="通过cfg创建会话工厂"><a href="#通过cfg创建会话工厂" class="headerlink" title="通过cfg创建会话工厂"></a>通过cfg创建会话工厂</h2><p><code>SessionFactory factory = cfg.buildSessionFactory();</code></p>
+<h2 id="从工厂中获取session连接"><a href="#从工厂中获取session连接" class="headerlink" title="从工厂中获取session连接"></a>从工厂中获取session连接</h2><p><code>Session session = factory.openSession();</code></p>
+<p>前四部可以简化：</p>
+<ul>
+<li><code>SessionFactory factory = new Configuration().configure().buildSessionFactory();</code></li>
+<li><code>Session session = factory.openSession();</code></li>
+</ul>
+<h2 id="执行操作"><a href="#执行操作" class="headerlink" title="执行操作"></a>执行操作</h2><p>（1）插入数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Product p = <span class="keyword">new</span> Product();<span class="comment">//映射数据库的实体类Product</span></span><br><span class="line">p.setName(<span class="string">"属性值"</span>)<span class="comment">//name是Product类中的属性</span></span><br><span class="line">session.save(p);</span><br></pre></td></tr></table></figure>
+<p>（2）查找一个对象（通过主键，此处为id）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//get方法</span></span><br><span class="line">Product p =(Product) session.get(Product<span class="class">.<span class="keyword">class</span>, 6)</span>;<span class="comment">//id=6的Product</span></span><br><span class="line"><span class="comment">//load方法</span></span><br><span class="line">Product p = (Product) session.load(Product<span class="class">.<span class="keyword">class</span>, 6)</span>;</span><br><span class="line"><span class="comment">//区别：</span></span><br><span class="line"><span class="comment">//1. 延迟加载  load方式是延迟加载，只有属性被访问的时候才会调用sql语句  get方式是非延迟加载，无论后面的代码是否会访问到属性，马上执行sql语句</span></span><br><span class="line"><span class="comment">//2. 对于id不存在的时候的处理  get方式会返回null  load方式会抛出异常</span></span><br></pre></td></tr></table></figure>
+<p>（3）删除一个对象（hibernate在删除一条数据之前，先要通过id把这条记录取出来）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Product p =(Product) session.get(Product<span class="class">.<span class="keyword">class</span>, 6)</span>;</span><br><span class="line">session.delete(p);</span><br></pre></td></tr></table></figure>
+<p>（4）更新一个对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Product p =(Product) session.get(Product<span class="class">.<span class="keyword">class</span>, 6)</span>;</span><br><span class="line">p.setName(<span class="string">"pencil"</span>);</span><br><span class="line">session.update(p);</span><br></pre></td></tr></table></figure>
+<p>插入，删除，更新三个操作需要开启事务，openSession查询时候不需要事务，但是getCurrentSession所有操作都必须放在事务中，而且getCurrentSession在提交事务后，session自动关闭。</p>
+<p>开启事务 ：<code>session.beginTransaction();</code></p>
+<p>最后关闭之前提交事务:<code>session.getTransaction().commit();</code></p>
+<p>规范写法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">SessionFactory factory = <span class="keyword">null</span>;</span><br><span class="line">Session session = <span class="keyword">null</span>;</span><br><span class="line">Transaction tx = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    factory = <span class="keyword">new</span> Configuration().configure().buildSessionFactory();</span><br><span class="line">    session = sessionFactory.openSession();</span><br><span class="line">    <span class="comment">//开启事务</span></span><br><span class="line">    tx = session.beginTransaction();</span><br><span class="line">        </span><br><span class="line"> <span class="comment">//执行操作</span></span><br><span class="line"> ........   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//提交事务</span></span><br><span class="line">    tx.commit();</span><br><span class="line">    &#125;<span class="keyword">catch</span>(Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        <span class="comment">//回滚事务</span></span><br><span class="line">        tx.rollback();</span><br><span class="line">    &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="comment">//关闭操作</span></span><br><span class="line">        session.close();</span><br><span class="line">        factory.close();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//保证就算程序出错，也能够通过 finally中的代码关闭释放资源。</span></span><br></pre></td></tr></table></figure>
+<h2 id="关闭连接"><a href="#关闭连接" class="headerlink" title="关闭连接"></a>关闭连接</h2><ul>
+<li><code>(session.close();</code></li>
+<li><code>factory.close();</code></li>
+</ul>
+<h1 id="Hibernate查询"><a href="#Hibernate查询" class="headerlink" title="Hibernate查询"></a>Hibernate查询</h1><h2 id="HQL"><a href="#HQL" class="headerlink" title="HQL"></a>HQL</h2><p>HQL（Hibernate Query Language）是hibernate专门用于查询数据的语句，有别于SQL，HQL 更接近于面向对象的思维方式。</p>
+<p>1.首先根据hql创建一个Query对象</p>
+<p><code>Query q =session.createQuery(&quot;from Product p where p.name like ?&quot;);</code></p>
+<p>使用hql的时候，不需要在前面加<code>select*</code>,并且用的是类名,而不是表名。</p>
+<p>2.设置参数</p>
+<p><code>q.setString(0, &quot;%&quot;+name+&quot;%&quot;);</code></p>
+<p>name为String参数,和基1的<code>PreparedStatement</code>不一样，Query是基0的.</p>
+<p>3.通过Query对象的list()方法</p>
+<p><code>List&lt;Product&gt; ps= q.list();</code></p>
+<p>例子：取表中的记录条数</p>
+<ul>
+<li><code>Query q =session.createQuery(&quot;select count(*) from Student&quot;);</code></li>
+<li><code>num=((Long) q.iterate().next()).intValue();</code></li>
+</ul>
+<p>从Hibernate 3.0.x/3.1.x升级到最新的3.2版之后，3.2版的很多sql函数如count(), sum()的唯一返回值已经从Integer变为Long，如果不升级代码，会得到一个ClassCastException。</p>
+<p>$\color{rgb(255,0,0)}{Exception in thread “main” java.lang.ClassCastException: }$</p>
+<p>$\color{rgb(255,0,0)}{java.lang.Long cannot be cast to java.lang.Integer}$</p>
+<p>值得注意的是：limit在hql中不能使用，并设置查询出来集合的数目，我们应该使用setMaxResults(e)方法来解决。设置一个从第几条开始取，另一个是取的长度。</p>
+<ul>
+<li><code>query.setFirstResult(s);</code></li>
+<li><code>query.setMaxResults(e);</code></li>
+</ul>
+<h2 id="Criteria"><a href="#Criteria" class="headerlink" title="Criteria"></a>Criteria</h2><p>Criteria完全是面向对象的方式在进行数据查询</p>
+<p>1.通过session的createCriteria创建一个Criteria 对象</p>
+<p><code>Criteria c= session.createCriteria(Product.class);</code></p>
+<p>2.Criteria.add 增加约束</p>
+<p><code>c.add(Restrictions.like(&quot;name&quot;, &quot;%&quot;+name+&quot;%&quot;));</code></p>
+<p>3.调用list()方法返回查询结果的集合</p>
+<p><code>List&lt;Product&gt; ps = c.list();</code></p>
+<p>Criteria 还可以很方便的进行进行<strong>分页查询</strong>和<strong>获取总数</strong></p>
+<p>分页查询，方法与HQL一样</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>序  列</th>
+<th>方法描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><code>public Criteria setFirstResult(int firstResult)</code>，这种方法需要一个代表你的结果集的第一行的整数，以第 0 行为开始。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>public Criteria setMaxResults(int maxResults)</code>，这个方法设置了 Hibernate 检索对象的<strong>maxResults</strong>。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>获取总数</p>
+<ul>
+<li><code>Query q =s.createQuery(&quot;select count(*) from Product&quot;);</code></li>
+<li><code>long total= (Long) q.uniqueResult();</code></li>
+</ul>
+<h2 id="标准的SQL"><a href="#标准的SQL" class="headerlink" title="标准的SQL"></a>标准的SQL</h2><ul>
+<li><code>Query q= s.createSQLQuery(sql);</code></li>
+<li><code>List&lt;Object[]&gt; list= q.list();</code></li>
+</ul>
+<p>因为标准SQL语句有可能返回各种各样的结果，比如多表查询，分组统计结果等等。 不能保证其查询结果能够装进一个Product对象中，所以返回的集合里的每一个元素是一个对象数组。 然后再通过下标把这个对象数组中的数据取出来。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>没有什么东西是十全十美的。Hibernate可以让你写的代码适配于不同的数据库，它会自己生成sql语句。这样一来，我们就不用再挣扎数据库里的操作了，更专注业务逻辑、数据关系、对象关系。Hibernate就像一把双刃剑，它的劣势也是因为它的优势所带来的，由于封装了sql语句的操作，我们就没办法使用数据库特有的功能，也没办法按照自己的逻辑写sql语句，当然我们自己写不见得会有多好。并且它对业务逻辑模型和数据库模型互相依赖的程序太高了，很难维持这种仅仅耦合的关系。所以在debug的时候会很难。也许就像他们说的“改代码比改配置文件容易”。</p>
+
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2020/03/16/PyInstaller安装和使用教程/" data-toggle="tooltip" data-placement="top" title="PyInstaller安装和使用教程">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        This is copyright.
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                <!--  css & js -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Hibernate简介"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Hibernate简介</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ORM"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">ORM</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Hibernate优势"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">Hibernate优势</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Hibernate配置"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Hibernate配置</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Hibernate配置文件"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">Hibernate配置文件</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Hibernate映射文件"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">Hibernate映射文件</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Hibernate使用步骤"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">Hibernate使用步骤</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#创建configuration对象"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">创建configuration对象</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#加载hibernate-cfg-xml"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">加载hibernate.cfg.xml</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#通过cfg创建会话工厂"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">通过cfg创建会话工厂</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#从工厂中获取session连接"><span class="toc-nav-number">3.4.</span> <span class="toc-nav-text">从工厂中获取session连接</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#执行操作"><span class="toc-nav-number">3.5.</span> <span class="toc-nav-text">执行操作</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#关闭连接"><span class="toc-nav-number">3.6.</span> <span class="toc-nav-text">关闭连接</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Hibernate查询"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">Hibernate查询</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#HQL"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">HQL</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Criteria"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">Criteria</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#标准的SQL"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">标准的SQL</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#总结"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">总结</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Mysql" title="Mysql">Mysql</a>
+                        
+                          <a class="tag" href="/tags/#Java框架" title="Java框架">Java框架</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="#" target="_blank">Other</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; QJY 2020 
+                    <br>
+                   
+                    <!--<a href="https://github.com/dusign/hexo-theme-snail" target="_blank" rel="noopener">
+                        <i>snail</i>
+                    </a> 
+                    | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0"
+                        width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=dusign&repo=hexo-theme-snail&type=star&count=true">
+                    </iframe>
+                    -->
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://dusign.net/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;🌱&quot; ,&quot;just do it&quot; ,&quot;🍀&quot; ,&quot;TY&quot;]' color='[&quot;rgb(121,93,179)&quot; ,&quot;rgb(76,180,231)&quot; ,&quot;rgb(184,90,154)&quot; ,&quot;rgb(154,190,254)&quot;]'></script>
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>
