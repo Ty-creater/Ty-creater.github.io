@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="keyword"  content="Ty, blog">
+    <link rel="shortcut icon" href="/img/man1.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          Linux基础总结 - Ty&#39;blog
+        
+    </title>
+
+    <link rel="canonical" href="https://dusign.net/2020/04/29/Linux基础总结/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-dark.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-dark.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('head.jpg')
+                /*post*/
+            
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/Just-do-it-white.png');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                            
+                        </div>
+                        <h1>Linux基础总结</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by QJY on
+                            2020-04-29
+                        </span>
+
+                        
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                Words <span class="post-count">5.1k</span> and
+                                Reading Time <span class="post-count">19</span> Minutes
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-dark.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-dark.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">TY&#39;BLOG</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/categories/">Categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/photography/">Photography</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="关机"><a href="#关机" class="headerlink" title="关机"></a>关机</h1><p>不管是重启系统还是关闭系统，首先要运行 sync 命令，把内存中的数据写到磁盘中。<br>sync 将数据由内存同步到硬盘中。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">sync <span class="comment"># 将数据由内存同步到硬盘中。</span></span><br><span class="line"></span><br><span class="line">shutdown <span class="comment"># 关机指令，你可以man shutdown 来看一下帮助文档。例如你可以运行如下命令关机：</span></span><br><span class="line"></span><br><span class="line">shutdown –h 10 <span class="comment"># 这个命令告诉大家，计算机将在10分钟后关机</span></span><br><span class="line"></span><br><span class="line">shutdown –h now <span class="comment"># 立马关机</span></span><br><span class="line"></span><br><span class="line">shutdown –h 20:25 <span class="comment"># 系统会在今天20:25关机</span></span><br><span class="line"></span><br><span class="line">shutdown –h +10 <span class="comment"># 十分钟后关机</span></span><br><span class="line"></span><br><span class="line">shutdown –r now <span class="comment"># 系统立马重启</span></span><br><span class="line"></span><br><span class="line">shutdown –r +10 <span class="comment"># 系统十分钟后重启</span></span><br><span class="line"></span><br><span class="line">reboot <span class="comment"># 就是重启，等同于 shutdown –r now</span></span><br><span class="line"></span><br><span class="line">halt <span class="comment"># 关闭系统，等同于shutdown –h now 和 poweroff</span></span><br></pre></td></tr></table></figure>
+<h1 id="切换用户"><a href="#切换用户" class="headerlink" title="切换用户"></a>切换用户</h1><p>root用户切换到普通用户：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su - 用户名</span><br></pre></td></tr></table></figure>
+<p>普通用户切换到root用户:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su</span><br></pre></td></tr></table></figure>
+<h1 id="系统目录结构"><a href="#系统目录结构" class="headerlink" title="系统目录结构"></a>系统目录结构</h1><p>登录系统后，在当前命令窗口下输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls /</span><br></pre></td></tr></table></figure>
+<p>树状目录结构：（Linux的一切资源都挂载在这个 / 根节点下）</p>
+<p><img src="目录结构.jpg" alt="目录结构"></p>
+<p><strong>以下是对这些目录的解释：</strong></p>
+<ul>
+<li><strong>/bin</strong>：bin是Binary的缩写, 这个目录存放着最经常使用的命令。</li>
+<li><strong>/boot：</strong> 这里存放的是启动Linux时使用的一些核心文件，包括一些连接文件以及镜像文件。</li>
+<li><strong>/dev ：</strong> dev是Device(设备)的缩写, 存放的是Linux的外部设备，在Linux中访问设备的方式和访问文件的方式是相同的</li>
+<li><strong>/etc：</strong> 这个目录用来存放所有的系统管理所需要的配置文件和子目录。</li>
+<li><strong>/home</strong>：用户的主目录，在Linux中，每个用户都有一个自己的目录，一般该目录名是以用户的账号命名的</li>
+<li><strong>/lib</strong>：这个目录里存放着系统最基本的动态连接共享库，其作用类似于Windows里的DLL文件。</li>
+<li><strong>/lost+found</strong>：这个目录一般情况下是空的，当系统非法关机后，这里就存放了一些文件。</li>
+<li><strong>/media</strong>：linux系统会自动识别一些设备，例如U盘、光驱等等，当识别后，linux会把识别的设备挂载到这个目录下。</li>
+<li><strong>/mnt</strong>：系统提供该目录是为了让用户临时挂载别的文件系统的，我们可以将光驱挂载在/mnt/上，然后进入该目录就可以查看光驱里的内容了。</li>
+<li><strong>/opt</strong>：这是给主机额外安装软件所摆放的目录。比如你安装一个ORACLE数据库则就可以放到这个目录下。默认是空的。</li>
+<li><strong>/proc</strong>：这个目录是一个虚拟的目录，它是系统内存的映射，我们可以通过直接访问这个目录来获取系统信息。</li>
+<li><strong>/root</strong>：该目录为系统管理员，也称作超级权限者的用户主目录。</li>
+<li><strong>/sbin</strong>：s就是Super User的意思，这里存放的是系统管理员使用的系统管理程序。</li>
+<li><strong>/srv</strong>：该目录存放一些服务启动之后需要提取的数据。</li>
+<li><strong>/sys</strong>：这是linux2.6内核的一个很大的变化。该目录下安装了2.6内核中新出现的一个文件系统 sysfs 。</li>
+<li><strong>/tmp</strong>：这个目录是用来存放一些临时文件的。</li>
+<li><strong>/usr</strong>：这是一个非常重要的目录，用户的很多应用程序和文件都放在这个目录下，类似于windows下的program files目录。</li>
+<li><strong>/usr/bin：</strong> 系统用户使用的应用程序。</li>
+<li><strong>/usr/sbin：</strong> 超级用户使用的比较高级的管理程序和系统守护程序。</li>
+<li><strong>/usr/src：</strong> 内核源代码默认的放置目录。</li>
+<li><strong>/var</strong>：这个目录中存放着在不断扩充着的东西，我们习惯将那些经常被修改的目录放在这个目录下。包括各种日志文件。</li>
+<li><strong>/run</strong>：是一个临时文件系统，存储系统启动以来的信息。当系统重启时，这个目录下的文件应该被删掉或清除。</li>
+</ul>
+<h1 id="绝对路径和相对路径"><a href="#绝对路径和相对路径" class="headerlink" title="绝对路径和相对路径"></a>绝对路径和相对路径</h1><p>Linux的目录结构为树状结构，最顶级的目录为根目录 /。</p>
+<p>其他目录通过挂载可以将它们添加到树中，通过解除挂载可以移除它们。</p>
+<h2 id="绝对路径"><a href="#绝对路径" class="headerlink" title="绝对路径"></a>绝对路径</h2><p>路径的写法，由根目录 / 写起，例如：/usr/share/doc 这个目录。</p>
+<h2 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h2><p>路径的写法，不是由 / 写起，例如由 /usr/share/doc 要到 /usr/share/man 底下时，可以写成：cd ../man 这就是相对路径的写法。</p>
+<h1 id="处理目录的常用命令"><a href="#处理目录的常用命令" class="headerlink" title="处理目录的常用命令"></a>处理目录的常用命令</h1><ul>
+<li><strong>ls</strong>: 列出目录</li>
+<li><strong>cd</strong>：切换目录</li>
+<li><strong>pwd</strong>：显示目前的目录</li>
+<li><strong>mkdir</strong>：创建一个新的目录</li>
+<li><strong>rmdir</strong>：删除一个空的目录</li>
+<li><strong>cp</strong>: 复制文件或目录</li>
+<li><strong>rm</strong>: 移除文件或目录</li>
+<li><strong>mv</strong>: 移动文件与目录，或修改文件与目录的名称</li>
+</ul>
+<p>可以使用 <em>man [命令]</em> 来查看各个命令的使用文档，如 ：man cp</p>
+<h2 id="ls-（列出目录）"><a href="#ls-（列出目录）" class="headerlink" title="ls （列出目录）"></a>ls （列出目录）</h2><p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># ls [-aAdfFhilnrRSt] 目录名称</span></span><br></pre></td></tr></table></figure>
+<p>选项与参数：</p>
+<ul>
+<li>-a ：全部的文件，连同隐藏文件( 开头为 . 的文件) 一起列出来(常用)</li>
+<li>-l ：长数据串列出，包含文件的属性与权限等等数据；(常用)</li>
+</ul>
+<p>将目录下的所有文件列出来(含属性与隐藏档)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># ls -al ~</span></span><br></pre></td></tr></table></figure>
+<h2 id="cd-（切换目录）"><a href="#cd-（切换目录）" class="headerlink" title="cd （切换目录）"></a>cd （切换目录）</h2><p>cd是Change Directory的缩写，这是用来变换工作目录的命令。</p>
+<p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> [相对路径或绝对路径]</span><br></pre></td></tr></table></figure>
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切换到用户目录下</span></span><br><span class="line">[root@localhost /]<span class="comment"># cd home  </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 mkdir 命令创建 quanjunyi 目录</span></span><br><span class="line">[root@localhost home]<span class="comment"># mkdir quanjunyi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入 kuangstudy 目录</span></span><br><span class="line">[root@localhost home]<span class="comment"># cd quanjunyi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 回到上一级</span></span><br><span class="line">[root@localhost quanjunyi]<span class="comment"># cd ..</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 回到根目录</span></span><br><span class="line">[root@localhost home]<span class="comment"># cd /</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 表示回到自己的家目录，亦即是 /root 这个目录</span></span><br><span class="line">[root@localhost /]<span class="comment"># cd ~</span></span><br><span class="line">[root@localhost ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<h2 id="pwd-显示目前所在的目录"><a href="#pwd-显示目前所在的目录" class="headerlink" title="pwd ( 显示目前所在的目录 )"></a>pwd ( 显示目前所在的目录 )</h2><p>pwd 是 <strong>Print Working Directory</strong> 的缩写，也就是显示目前所在目录的命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]<span class="comment">#pwd [-P]</span></span><br></pre></td></tr></table></figure>
+<p>选项与参数：</p>
+<ul>
+<li><strong>-P</strong> ：显示出确实的路径，而非使用连接(link) 路径。</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 单纯显示出目前的工作目录</span></span><br><span class="line">[root@localhost ~]<span class="comment"># pwd</span></span><br><span class="line">/root</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果是链接，要显示真实地址，可以使用 -P参数</span></span><br><span class="line">[root@localhost /]<span class="comment"># cd bin</span></span><br><span class="line">[root@localhost bin]<span class="comment"># pwd -P</span></span><br><span class="line">/usr/bin</span><br></pre></td></tr></table></figure>
+<h2 id="mkdir-（创建新目录）"><a href="#mkdir-（创建新目录）" class="headerlink" title="mkdir （创建新目录）"></a>mkdir （创建新目录）</h2><p>如果想要创建新的目录的话，那么就使用mkdir (make directory)吧。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir [-mp] 目录名称</span><br></pre></td></tr></table></figure>
+<p>选项与参数：</p>
+<ul>
+<li><strong>-m</strong> ：配置文件的权限喔！直接配置!</li>
+<li><strong>-p</strong> ：帮助你直接将所需要的目录(包含上一级目录)递归创建起来！</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入我们用户目录下</span></span><br><span class="line">[root@localhost /]<span class="comment"># cd /home</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个 test 文件夹</span></span><br><span class="line">[root@localhost home]<span class="comment"># mkdir test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建多层级目录</span></span><br><span class="line">[root@localhost home]<span class="comment"># mkdir test1/test2/test3</span></span><br><span class="line">mkdir: cannot create directory ‘test1/test2/test3’:</span><br><span class="line">No such file or directory  <span class="comment"># 没办法直接创建此目录啊！</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加了这个 -p 的选项，可以自行帮你创建多层目录！</span></span><br><span class="line">[root@localhost home]<span class="comment"># mkdir -p test1/test2/test3/test4</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建权限为 rwx--x--x 的目录。</span></span><br><span class="line">[root@localhost home]<span class="comment"># mkdir -m 711 test2</span></span><br></pre></td></tr></table></figure>
+<h2 id="rmdir-删除空的目录"><a href="#rmdir-删除空的目录" class="headerlink" title="rmdir ( 删除空的目录 )"></a>rmdir ( 删除空的目录 )</h2><p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir [-p] 目录名称</span><br></pre></td></tr></table></figure>
+<p>选项与参数：</p>
+<ul>
+<li><strong>-p ：</strong>连同上一级『空的』目录也一起删除</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可直接删除掉，没问题</span></span><br><span class="line">[root@localhost home]<span class="comment"># rmdir test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 因为尚有内容，所以无法删除！</span></span><br><span class="line">[root@localhost home]<span class="comment"># rmdir test1</span></span><br><span class="line">rmdir: failed to remove ‘test1’: Directory not empty</span><br><span class="line"></span><br><span class="line"><span class="comment"># 利用 -p 这个选项，立刻就可以将 test1/test2/test3 依次删除。</span></span><br><span class="line">[root@localhost home]<span class="comment"># rmdir -p test1/test2/test3</span></span><br></pre></td></tr></table></figure>
+<p>注意：这个 rmdir 仅能删除空的目录，你可以使用 rm 命令来删除非空目录！</p>
+<h2 id="cp-复制文件或目录"><a href="#cp-复制文件或目录" class="headerlink" title="cp ( 复制文件或目录 )"></a>cp ( 复制文件或目录 )</h2><p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># cp [-adfilprsu] 来源档(source) 目标档(destination)</span></span><br><span class="line">[root@localhost ~]<span class="comment"># cp [options] source1 source2 source3 .... directory</span></span><br></pre></td></tr></table></figure>
+<p>选项与参数：</p>
+<ul>
+<li><strong>-a：</strong>相当於 -pdr 的意思，至於 pdr 请参考下列说明；(常用)</li>
+<li><strong>-p：</strong>连同文件的属性一起复制过去，而非使用默认属性(备份常用)；</li>
+<li><strong>-d：</strong>若来源档为连结档的属性(link file)，则复制连结档属性而非文件本身；</li>
+<li><strong>-r：</strong>递归持续复制，用於目录的复制行为；(常用)</li>
+<li><strong>-f：</strong>为强制(force)的意思，若目标文件已经存在且无法开启，则移除后再尝试一次；</li>
+<li><strong>-i：</strong>若目标档(destination)已经存在时，在覆盖时会先询问动作的进行(常用)</li>
+<li><strong>-l：</strong>进行硬式连结(hard link)的连结档创建，而非复制文件本身。</li>
+<li><strong>-s：</strong>复制成为符号连结档 (symbolic link)，亦即『捷径』文件；</li>
+<li><strong>-u：</strong>若 destination 比 source 旧才升级 destination ！</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 找一个有文件的目录，我这里找到 root目录</span></span><br><span class="line">[root@localhost home]<span class="comment"># cd /root</span></span><br><span class="line">[root@localhost ~]<span class="comment"># ls</span></span><br><span class="line">install.sh</span><br><span class="line">[root@localhost ~]<span class="comment"># cd /home</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制 root目录下的install.sh 到 home目录下</span></span><br><span class="line">[root@localhost home]<span class="comment"># cp /root/install.sh /home</span></span><br><span class="line">[root@localhost home]<span class="comment"># ls</span></span><br><span class="line">install.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 再次复制，加上-i参数，增加覆盖询问？</span></span><br><span class="line">[root@localhost home]<span class="comment"># cp -i /root/install.sh /home</span></span><br><span class="line">cp: overwrite ‘/home/install.sh’? y <span class="comment"># n不覆盖，y为覆盖</span></span><br></pre></td></tr></table></figure>
+<h2 id="rm-移除文件或目录"><a href="#rm-移除文件或目录" class="headerlink" title="rm ( 移除文件或目录 )"></a>rm ( 移除文件或目录 )</h2><p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm [-fir] 文件或目录</span><br></pre></td></tr></table></figure>
+<p>选项与参数：</p>
+<ul>
+<li>-f ：就是 force 的意思，忽略不存在的文件，不会出现警告信息</li>
+<li>-i ：互动模式，在删除前会询问使用者是否动作</li>
+<li>-r ：递归删除啊！最常用在目录的删除了！这是非常危险的选项！！！</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将刚刚在 cp 的实例中创建的 install.sh删除掉！</span></span><br><span class="line">[root@localhost home]<span class="comment"># rm -i install.sh</span></span><br><span class="line">rm: remove regular file ‘install.sh’? y</span><br><span class="line"><span class="comment"># 如果加上 -i 的选项就会主动询问喔，避免你删除到错误的档名！</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># rm -rf /</span></span><br><span class="line"><span class="comment"># 尽量不要在服务器上使用,这就是传说中的删库跑路！</span></span><br></pre></td></tr></table></figure>
+<h2 id="mv-移动文件与目录，或修改名称"><a href="#mv-移动文件与目录，或修改名称" class="headerlink" title="mv  ( 移动文件与目录，或修改名称 )"></a>mv  ( 移动文件与目录，或修改名称 )</h2><p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># mv [-fiu] source destination</span></span><br><span class="line">[root@localhost ~]<span class="comment"># mv [options] source1 source2 source3 .... directory</span></span><br></pre></td></tr></table></figure>
+<p>选项与参数：</p>
+<ul>
+<li>-f ：force 强制的意思，如果目标文件已经存在，不会询问而直接覆盖；</li>
+<li>-i ：若目标文件 (destination) 已经存在时，就会询问是否覆盖！</li>
+<li>-u ：若目标文件已经存在，且 source 比较新，才会升级 (update)</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 复制一个文件到当前目录</span></span><br><span class="line">[root@localhost home]<span class="comment"># cp /root/install.sh /home</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个文件夹 test</span></span><br><span class="line">[root@localhost home]<span class="comment"># mkdir test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将复制过来的文件移动到我们创建的目录，并查看</span></span><br><span class="line">[root@localhost home]<span class="comment"># mv install.sh test</span></span><br><span class="line">[root@localhost home]<span class="comment"># ls</span></span><br><span class="line"><span class="built_in">test</span></span><br><span class="line">[root@localhost home]<span class="comment"># cd test</span></span><br><span class="line">[root@localhost <span class="built_in">test</span>]<span class="comment"># ls</span></span><br><span class="line">install.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将文件夹重命名，然后再次查看！</span></span><br><span class="line">[root@localhost <span class="built_in">test</span>]<span class="comment"># cd ..</span></span><br><span class="line">[root@localhost home]<span class="comment"># mv test mvtest</span></span><br><span class="line">[root@localhost home]<span class="comment"># ls</span></span><br><span class="line">mvtest</span><br></pre></td></tr></table></figure>
+<h1 id="基本属性"><a href="#基本属性" class="headerlink" title="基本属性"></a>基本属性</h1><p>Linux系统是一种典型的多用户系统，不同的用户处于不同的地位，拥有不同的权限。为了保护系统的安全性，Linux系统对不同的用户访问同一文件（包括目录文件）的权限做了不同的规定。</p>
+<p>在Linux中我们可以使用<code>ll</code>或者<code>ls –l</code>命令来显示一个文件的属性以及文件所属的用户和组，如：</p>
+<p><img src="ls-l.png" alt="ls-l"></p>
+<p>在Linux中第一个字符代表这个文件是目录、文件或链接文件等等：</p>
+<ul>
+<li>当为[ <strong>d</strong> ]则是目录</li>
+</ul>
+<ul>
+<li>当为[ <strong>-</strong> ]则是文件</li>
+<li>若是[ <strong>l</strong> ]则表示为链接文档 ( link file )</li>
+<li>若是[ <strong>b</strong> ]则表示为装置文件里面的可供储存的接口设备 ( 可随机存取装置 )</li>
+<li>若是[ <strong>c</strong> ]则表示为装置文件里面的串行端口设备，例如键盘、鼠标 ( 一次性读取装置 )</li>
+</ul>
+<p>接下来的字符中，以三个为一组，且均为『rwx』 的三个参数的组合。</p>
+<p>其中，[ r ]代表可读(read)、[ w ]代表可写(write)、[ x ]代表可执行(execute)。</p>
+<p>要注意的是，这三个权限的位置不会改变，如果没有权限，就会出现减号[ - ]而已。</p>
+<p>每个文件的属性由左边第一部分的10个字符来确定（如下图）：</p>
+<p><img src="文件属性.png" alt="文件属性"></p>
+<p>第0位确定文件类型，第1-3位确定属主（该文件的所有者）拥有该文件的权限。第4-6位确定属组（所有者的同组用户）拥有该文件的权限，第7-9位确定其他用户拥有该文件的权限。</p>
+<h1 id="修改文件属性"><a href="#修改文件属性" class="headerlink" title="修改文件属性"></a>修改文件属性</h1><h2 id="chgrp：更改文件属组"><a href="#chgrp：更改文件属组" class="headerlink" title="chgrp：更改文件属组"></a>chgrp：更改文件属组</h2><p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chgrp [-R] 属组名 文件名</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>-R</strong>：递归更改文件属组，就是在更改某个目录文件的属组时，如果加上-R的参数，那么该目录下的所有文件的属组都会更改。</li>
+</ul>
+<h2 id="chown：更改文件属主，也可以同时更改文件属组"><a href="#chown：更改文件属主，也可以同时更改文件属组" class="headerlink" title="chown：更改文件属主，也可以同时更改文件属组"></a>chown：更改文件属主，也可以同时更改文件属组</h2><p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chown [–R] 属主名 文件名</span><br><span class="line">chown [-R] 属主名：属组名 文件名</span><br></pre></td></tr></table></figure>
+<h2 id="chmod：更改文件9个属性"><a href="#chmod：更改文件9个属性" class="headerlink" title="chmod：更改文件9个属性"></a>chmod：更改文件9个属性</h2><p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod [-R] xyz 文件或目录</span><br></pre></td></tr></table></figure>
+<p>Linux文件属性有两种设置方法，一种是数字，一种是符号。</p>
+<p>Linux文件的基本权限就有九个，分别是owner/group/others三种身份各有自己的read/write/execute权限。</p>
+<p>文件的权限字符为：『-rwxrwxrwx』， 这九个权限是三个三个一组的！其中，我们可以使用数字来代表各个权限，各权限的分数对照表如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r:4     w:2         x:1</span><br></pre></td></tr></table></figure>
+<p>每种身份(owner/group/others)各自的三个权限(r/w/x)分数是需要累加的，例如当权限为：[-rwxrwx—-] 分数则是：</p>
+<ul>
+<li>owner = rwx = 4+2+1 = 7</li>
+<li>group = rwx = 4+2+1 = 7</li>
+<li>others= —- = 0+0+0 = 0</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 770 filename</span><br></pre></td></tr></table></figure>
+<h1 id="文件内容查看"><a href="#文件内容查看" class="headerlink" title="文件内容查看"></a>文件内容查看</h1><p>Linux系统中使用以下命令来查看文件的内容：</p>
+<ul>
+<li><strong>cat</strong> 由第一行开始显示文件内容</li>
+<li><strong>tac</strong> 从最后一行开始显示，可以看出 tac 是 cat 的倒着写！</li>
+<li><strong>nl</strong>  显示的时候，顺道输出行号！</li>
+<li><strong>more</strong> 一页一页的显示文件内容</li>
+<li><strong>less</strong> 与 more 类似，但是比 more 更好的是，他可以往前翻页！</li>
+<li><strong>head</strong> 只看头几行</li>
+<li><strong>tail</strong> 只看尾巴几行</li>
+</ul>
+<h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat [-AbEnTv]</span><br></pre></td></tr></table></figure>
+<p>选项与参数：</p>
+<ul>
+<li>-A ：相当於 -vET 的整合选项，可列出一些特殊字符而不是空白而已；</li>
+<li>-b ：列出行号，仅针对非空白行做行号显示，空白行不标行号！</li>
+<li>-E ：将结尾的断行字节 $ 显示出来；</li>
+<li>-n ：列印出行号，连同空白行也会有行号，与 -b 的选项不同；</li>
+<li>-T ：将 [tab] 按键以 ^I 显示出来；</li>
+<li>-v ：列出一些看不出来的特殊字符</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看网络配置: 文件地址 /etc/sysconfig/network-scripts/</span></span><br><span class="line">[root@localhost ~]<span class="comment"># cat /etc/sysconfig/network-scripts/ifcfg-eth0</span></span><br><span class="line">DEVICE=eth0</span><br><span class="line">BOOTPROTO=dhcp</span><br><span class="line">ONBOOT=yes</span><br></pre></td></tr></table></figure>
+<h2 id="tac"><a href="#tac" class="headerlink" title="tac"></a>tac</h2><p>tac与cat命令刚好相反，文件内容从最后一行开始显示，可以看出 tac 是 cat 的倒着写！如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># tac /etc/sysconfig/network-scripts/ifcfg-eth0</span></span><br><span class="line">ONBOOT=yes</span><br><span class="line">BOOTPROTO=dhcp</span><br><span class="line">DEVICE=eth0</span><br></pre></td></tr></table></figure>
+<h2 id="nl"><a href="#nl" class="headerlink" title="nl"></a>nl</h2><p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nl [-bnw] 文件</span><br></pre></td></tr></table></figure>
+<p>选项与参数：</p>
+<ul>
+<li>-b ：指定行号指定的方式，主要有两种：-b a ：表示不论是否为空行，也同样列出行号(类似 cat -n)；-b t ：如果有空行，空的那一行不要列出行号(默认值)</li>
+<li>-n ：列出行号表示的方法，主要有三种：-n ln ：行号在荧幕的最左方显示；-n rn ：行号在自己栏位的最右方显示，且不加 0 ；-n rz ：行号在自己栏位的最右方显示，且加 0 </li>
+<li>-w ：行号栏位的占用的位数</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># nl /etc/sysconfig/network-scripts/ifcfg-eth0</span></span><br><span class="line">1DEVICE=eth0</span><br><span class="line">2BOOTPROTO=dhcp</span><br><span class="line">3ONBOOT=yes</span><br></pre></td></tr></table></figure>
+<h2 id="more"><a href="#more" class="headerlink" title="more"></a>more</h2><p>在 more 这个程序的运行过程中，你有几个按键可以按的：</p>
+<ul>
+<li>空白键 (space)：代表向下翻一页</li>
+<li>Enter   ：代表向下翻『一行』</li>
+<li>/字串   ：代表在这个显示的内容当中，向下搜寻『字串』这个关键字</li>
+<li>:f    ：立刻显示出档名以及目前显示的行数</li>
+<li>q    ：代表立刻离开 more ，不再显示该文件内容</li>
+<li>b 或 [ctrl]-b ：代表往回翻页，不过这动作只对文件有用，对管线无用</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]<span class="comment"># more /etc/csh.login</span></span><br><span class="line">....(中间省略)....</span><br><span class="line">--More--(28%) <span class="comment"># 重点在这一行喔！你的光标也会在这里等待你的命令</span></span><br></pre></td></tr></table></figure>
+<h2 id="less"><a href="#less" class="headerlink" title="less"></a>less</h2><p>less运行时可以输入的命令有：</p>
+<ul>
+<li>空白键  ：向下翻动一页</li>
+<li>[pagedown]：向下翻动一页</li>
+<li>[pageup] ：向上翻动一页</li>
+<li>/字串  ：向下搜寻『字串』的功能</li>
+<li>?字串  ：向上搜寻『字串』的功能</li>
+<li>n   ：重复前一个搜寻 (与 / 或 ? 有关！)</li>
+<li>N   ：反向的重复前一个搜寻 (与 / 或 ? 有关！)</li>
+<li>q   ：离开 less 这个程序</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]<span class="comment"># more /etc/csh.login</span></span><br><span class="line">....(中间省略)....</span><br><span class="line">:   <span class="comment"># 这里可以等待你输入命令！</span></span><br></pre></td></tr></table></figure>
+<h2 id="head"><a href="#head" class="headerlink" title="head"></a>head</h2><p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head [-n number] 文件</span><br></pre></td></tr></table></figure>
+<p>选项与参数：<strong>-n</strong> 后面接数字，代表显示几行的意思！</p>
+<p>默认的情况中，显示前面 10 行！若要显示前 20 行，就得要这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]<span class="comment"># head -n 20 /etc/csh.login</span></span><br></pre></td></tr></table></figure>
+<h2 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h2><p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail [-n number] 文件</span><br></pre></td></tr></table></figure>
+<p>选项与参数：</p>
+<ul>
+<li>-n ：后面接数字，代表显示几行的意思</li>
+</ul>
+<p>默认的情况中，显示最后 10 行！若要显示最后 20 行，就得要这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]<span class="comment"># tail -n 20 /etc/csh.login</span></span><br></pre></td></tr></table></figure>
+<h1 id="Linux-链接概念"><a href="#Linux-链接概念" class="headerlink" title="Linux 链接概念"></a>Linux 链接概念</h1><p>Linux 链接分两种，一种被称为硬链接（Hard Link），另一种被称为符号链接（Symbolic Link）。</p>
+<p><strong>ln</strong> 命令产生硬链接。</p>
+<h2 id="硬连接"><a href="#硬连接" class="headerlink" title="硬连接"></a>硬连接</h2><p>硬连接指通过索引节点来进行连接。在 Linux 的文件系统中，保存在磁盘分区中的文件不管是什么类型都给它分配一个编号，称为索引节点号(Inode Index)。在 Linux 中，多个文件名指向同一索引节点是存在的。比如：A 是 B 的硬链接（A 和 B 都是文件名），则 A 的目录项中的 inode 节点号与 B 的目录项中的 inode 节点号相同，即一个 inode 节点对应两个不同的文件名，两个文件名指向同一个文件，A 和 B 对文件系统来说是完全平等的。删除其中任何一个都不会影响另外一个的访问。</p>
+<p>硬连接的作用是允许一个文件拥有多个有效路径名，这样用户就可以建立硬连接到重要文件，以防止“误删”的功能。其原因如上所述，因为对应该目录的索引节点有一个以上的连接。只删除一个连接并不影响索引节点本身和其它的连接，只有当最后一个连接被删除后，文件的数据块及目录的连接才会被释放。也就是说，文件真正删除的条件是与之相关的所有硬连接文件均被删除。</p>
+<h2 id="软连接"><a href="#软连接" class="headerlink" title="软连接"></a>软连接</h2><p>另外一种连接称之为符号连接（Symbolic Link），也叫软连接。软链接文件有类似于 Windows 的快捷方式。它实际上是一个特殊的文件。在符号连接中，文件实际上是一个文本文件，其中包含的有另一文件的位置信息。比如：A 是 B 的软链接（A 和 B 都是文件名），A 的目录项中的 inode 节点号与 B 的目录项中的 inode 节点号不相同，A 和 B 指向的是两个不同的 inode，继而指向两块不同的数据块。但是 A 的数据块中存放的只是 B 的路径名（可以根据这个找到 B 的目录项）。A 和 B 之间是“主从”关系，如果 B 被删除了，A 仍然存在（因为两个是不同的文件），但指向的是一个无效的链接。</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]<span class="comment"># cd /home</span></span><br><span class="line">[root@localhost home]<span class="comment"># touch f1 # 创建一个测试文件f1</span></span><br><span class="line">[root@localhost home]<span class="comment"># ls</span></span><br><span class="line">f1</span><br><span class="line">[root@localhost home]<span class="comment"># ln f1 f2     # 创建f1的一个硬连接文件f2</span></span><br><span class="line">[root@localhost home]<span class="comment"># ln -s f1 f3   # 创建f1的一个符号连接(软连接)文件f3</span></span><br><span class="line">[root@localhost home]<span class="comment"># ls -li       # -i参数显示文件的inode节点信息</span></span><br><span class="line">397247 -rw-r--r-- 2 root root     0 Mar 13 00:50 f1</span><br><span class="line">397247 -rw-r--r-- 2 root root     0 Mar 13 00:50 f2</span><br><span class="line">397248 lrwxrwxrwx 1 root root     2 Mar 13 00:50 f3 -&gt; f1</span><br></pre></td></tr></table></figure>
+<p>从上面的结果中可以看出，硬连接文件 f2 与原文件 f1 的 inode 节点相同，均为 397247，然而符号连接文件的 inode 节点不同。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># echo 字符串输出 &gt;&gt; f1 输出到 f1文件</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># echo "I am f1 file" &gt;&gt;f1</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># cat f1</span></span><br><span class="line">I am f1 file</span><br><span class="line">[root@kuangshen home]<span class="comment"># cat f2</span></span><br><span class="line">I am f1 file</span><br><span class="line">[root@kuangshen home]<span class="comment"># cat f3</span></span><br><span class="line">I am f1 file</span><br><span class="line">[root@kuangshen home]<span class="comment"># rm -f f1</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># cat f2</span></span><br><span class="line">I am f1 file</span><br><span class="line">[root@kuangshen home]<span class="comment"># cat f3</span></span><br><span class="line">cat: f3: No such file or directory</span><br></pre></td></tr></table></figure>
+<p>通过上面的测试可以看出：当删除原始文件 f1 后，硬连接 f2 不受影响，但是符号连接 f1 文件无效。</p>
+<p>结论：</p>
+<ul>
+<li>删除符号连接f3,对f1,f2无影响；</li>
+<li>删除硬连接f2，对f1,f3也无影响；</li>
+<li>删除原文件f1，对硬连接f2没有影响，导致符号连接f3失效；</li>
+<li>同时删除原文件f1,硬连接f2，整个文件会真正的被删除。</li>
+</ul>
+
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2020/05/13/Redis安装与配置/" data-toggle="tooltip" data-placement="top" title="Redis安装与配置">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2020/04/19/CentOS7安装JDK总结/" data-toggle="tooltip" data-placement="top" title="CentOS7安装JDK总结">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        This is copyright.
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                <!--  css & js -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#关机"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">关机</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#切换用户"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">切换用户</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#系统目录结构"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">系统目录结构</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#绝对路径和相对路径"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">绝对路径和相对路径</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#绝对路径"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">绝对路径</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#相对路径"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">相对路径</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#处理目录的常用命令"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">处理目录的常用命令</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ls-（列出目录）"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">ls （列出目录）</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#cd-（切换目录）"><span class="toc-nav-number">5.2.</span> <span class="toc-nav-text">cd （切换目录）</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#pwd-显示目前所在的目录"><span class="toc-nav-number">5.3.</span> <span class="toc-nav-text">pwd ( 显示目前所在的目录 )</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#mkdir-（创建新目录）"><span class="toc-nav-number">5.4.</span> <span class="toc-nav-text">mkdir （创建新目录）</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#rmdir-删除空的目录"><span class="toc-nav-number">5.5.</span> <span class="toc-nav-text">rmdir ( 删除空的目录 )</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#cp-复制文件或目录"><span class="toc-nav-number">5.6.</span> <span class="toc-nav-text">cp ( 复制文件或目录 )</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#rm-移除文件或目录"><span class="toc-nav-number">5.7.</span> <span class="toc-nav-text">rm ( 移除文件或目录 )</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#mv-移动文件与目录，或修改名称"><span class="toc-nav-number">5.8.</span> <span class="toc-nav-text">mv  ( 移动文件与目录，或修改名称 )</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#基本属性"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">基本属性</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#修改文件属性"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">修改文件属性</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#chgrp：更改文件属组"><span class="toc-nav-number">7.1.</span> <span class="toc-nav-text">chgrp：更改文件属组</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#chown：更改文件属主，也可以同时更改文件属组"><span class="toc-nav-number">7.2.</span> <span class="toc-nav-text">chown：更改文件属主，也可以同时更改文件属组</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#chmod：更改文件9个属性"><span class="toc-nav-number">7.3.</span> <span class="toc-nav-text">chmod：更改文件9个属性</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#文件内容查看"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">文件内容查看</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#cat"><span class="toc-nav-number">8.1.</span> <span class="toc-nav-text">cat</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#tac"><span class="toc-nav-number">8.2.</span> <span class="toc-nav-text">tac</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#nl"><span class="toc-nav-number">8.3.</span> <span class="toc-nav-text">nl</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#more"><span class="toc-nav-number">8.4.</span> <span class="toc-nav-text">more</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#less"><span class="toc-nav-number">8.5.</span> <span class="toc-nav-text">less</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#head"><span class="toc-nav-number">8.6.</span> <span class="toc-nav-text">head</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#tail"><span class="toc-nav-number">8.7.</span> <span class="toc-nav-text">tail</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Linux-链接概念"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">Linux 链接概念</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#硬连接"><span class="toc-nav-number">9.1.</span> <span class="toc-nav-text">硬连接</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#软连接"><span class="toc-nav-number">9.2.</span> <span class="toc-nav-text">软连接</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#测试"><span class="toc-nav-number">9.3.</span> <span class="toc-nav-text">测试</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="#" target="_blank">Other</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; QJY 2020 
+                    <br>
+                   
+                    <!--<a href="https://github.com/dusign/hexo-theme-snail" target="_blank" rel="noopener">
+                        <i>snail</i>
+                    </a> 
+                    | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0"
+                        width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=dusign&repo=hexo-theme-snail&type=star&count=true">
+                    </iframe>
+                    -->
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://dusign.net/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;🌱&quot; ,&quot;just do it&quot; ,&quot;🍀&quot; ,&quot;TY&quot;]' color='[&quot;rgb(121,93,179)&quot; ,&quot;rgb(76,180,231)&quot; ,&quot;rgb(184,90,154)&quot; ,&quot;rgb(154,190,254)&quot;]'></script>
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>

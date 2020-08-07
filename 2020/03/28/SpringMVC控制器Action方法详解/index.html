@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="keyword"  content="Ty, blog">
+    <link rel="shortcut icon" href="/img/man1.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          SpringMVC控制器Action方法详解 - Ty&#39;blog
+        
+    </title>
+
+    <link rel="canonical" href="https://dusign.net/2020/03/28/SpringMVC控制器Action方法详解/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-dark.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-dark.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('head.jpg')
+                /*post*/
+            
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/Just-do-it-white.png');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Java框架" title="Java框架">Java框架</a>
+                            
+                              <a class="tag" href="/tags/#SpringMVC" title="SpringMVC">SpringMVC</a>
+                            
+                        </div>
+                        <h1>SpringMVC控制器Action方法详解</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by QJY on
+                            2020-03-28
+                        </span>
+
+                        
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                Words <span class="post-count">2.4k</span> and
+                                Reading Time <span class="post-count">10</span> Minutes
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-dark.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-dark.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">TY&#39;BLOG</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/categories/">Categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/photography/">Photography</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="Action参数类型"><a href="#Action参数类型" class="headerlink" title="Action参数类型"></a>Action参数类型</h1><h2 id="自动参数映射"><a href="#自动参数映射" class="headerlink" title="自动参数映射"></a>自动参数映射</h2><h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><p>方法的参数可以是任意基本数据类型，如果方法参数名与http中请求的参数名称相同时会进行自动映射。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/test"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">action</span><span class="params">(Model model, String name)</span> </span>&#123;</span><br><span class="line">    model.addAttribute(<span class="string">"message"</span>,name);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"myshow"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>包装类型也一样，但如果参数中没有对应名称与类型的数据则会异常。</p>
+<h3 id="自定义数据类型"><a href="#自定义数据类型" class="headerlink" title="自定义数据类型"></a>自定义数据类型</h3><p>除了基本数据类型，也可以自定义的数据类型，如一个自定义的POJO对象，Spring MVC会通过反射把请中的参数设置到对象中，转换类型。即http中请求的参数名称与Product属性名称相同时，自动映射。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/test"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">action</span><span class="params">(Model model,Product product)</span> </span>&#123;</span><br><span class="line">    model.addAttribute(<span class="string">"message"</span>, product);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"myshow"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="复杂数据类型"><a href="#复杂数据类型" class="headerlink" title="复杂数据类型"></a>复杂数据类型</h3><p>复杂数据类型指的是一个自定义类型中还包含另外一个对象类型，如用户类型中包含产品对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/test"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">action</span><span class="params">(Model model,User user)</span> </span>&#123;</span><br><span class="line">    model.addAttribute(<span class="string">"message"</span>, user);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"myshow"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需要注意的是表单提交的name要发生改变。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">action</span>=<span class="string">"test"</span>&gt;</span></span><br><span class="line">     username:<span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"username"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">     pdctname:<span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"product.name"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>数组会在表单实现复选框的时候会用到。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/test"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">action</span><span class="params">(Model model,String[] name)</span></span>&#123;</span><br><span class="line">    model.addAttribute(<span class="string">"message"</span>,name);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"myshow"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="List集合类型"><a href="#List集合类型" class="headerlink" title="List集合类型"></a>List集合类型</h3><p>不能直接在action的参数中指定List<T>类型，所以需要将作为<code>List&lt;String&gt;name</code>自定义类中的一个属性。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/test"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">action</span><span class="params">(Model model,Product product)</span></span>&#123;</span><br><span class="line">    model.addAttribute(<span class="string">"message"</span>,product);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"myshow"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Map集合类型"><a href="#Map集合类型" class="headerlink" title="Map集合类型"></a>Map集合类型</h3><p>Map与List的实现方式基本一样，这里先定义了一个包装Map的类型Product。</p>
+<h2 id="RequestParam参数绑定"><a href="#RequestParam参数绑定" class="headerlink" title="@RequestParam参数绑定"></a>@RequestParam参数绑定</h2><p>简单的参数可以使用自动参数映射，复杂一些的需使用@RequestParam完成，虽然自动参数映射很方便，但有些细节是不能处理的，如参数是否为必须参数，名称没有办法指定，参数的默认值就没有有办法做到了。如果使用@RequestParam可以实现请求参数绑定，Spring MVC会自动查找请求中的参数转类型并将与参数进行绑定。</p>
+<h3 id="基本数据类型绑定与注解属性"><a href="#基本数据类型绑定与注解属性" class="headerlink" title="基本数据类型绑定与注解属性"></a>基本数据类型绑定与注解属性</h3><p>@RequestParam共有4个注解属性，required属性表示是否为必须，默认值为true，如果请求中没有指定的参数会报异常；defaultValue用于设置参数的默认值，如果不指定值则使用默认值，只能是String类型的。name与value互为别名关系用于指定参数名称。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">act</span><span class="params">(Model model,@RequestParam(required = <span class="keyword">false</span>, defaultValue = <span class="string">"99"</span>)</span> <span class="keyword">int</span> name)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	model.addAttribute(<span class="string">"message"</span>, name);</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"myshow"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果没有name参数，int型的name在跳转时会报400错误。将int改为String并且同样是没有name值传入的，但是可以成功跳转。</p>
+<h3 id="List与数组绑定基本数据类型"><a href="#List与数组绑定基本数据类型" class="headerlink" title="List与数组绑定基本数据类型"></a>List与数组绑定基本数据类型</h3><p>自动参数映射是不能直接完成List与数组绑定的，但是结合@RequestParam可以轻松实现。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">act</span><span class="params">(Model model,@RequestParam(<span class="string">"hobby"</span>)</span> List&lt;String&gt; favorites)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	model.addAttribute(<span class="string">"message"</span>, favorites);</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"myshow"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>@RequestParam(“hobby”)中hobby是必须的，他是参数的名称，但是如果你用的形参与参数的名称相同，即favorites替换成hobby，那么@RequestParam(“hobby”)可以用@RequestParam()代替。</p>
+<h1 id="Action返回值类型"><a href="#Action返回值类型" class="headerlink" title="Action返回值类型"></a>Action返回值类型</h1><h2 id="返回值为String"><a href="#返回值为String" class="headerlink" title="返回值为String"></a>返回值为String</h2><h3 id="String作为视图名称"><a href="#String作为视图名称" class="headerlink" title="String作为视图名称"></a>String作为视图名称</h3><p>默认如果action返回String，此时的String为视图名称，会去视图解析器的设定的目录下查找，查找的规则是：URL= prefix前缀+视图名称 +suffix后缀组成。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/test"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">action</span><span class="params">(Model model)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        model.addAttribute(<span class="string">"message"</span>,<span class="string">"action"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"myshow"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Spring MVC的配置文件内容如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"irViewResolver"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/page/"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>实际url=/WEB-INF/page/myshow.jsp</p>
+<h3 id="String作为内容输出"><a href="#String作为内容输出" class="headerlink" title="String作为内容输出"></a>String作为内容输出</h3><p>如果方法声明了注解@ResponseBody ，将内容或对象作为 HTTP 响应正文返回，并调用适合HttpMessageConverter的Adapter转换对象，写入输出流。这时的String不再是路径而是内容。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/test"</span>)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">action</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"not &lt;b&gt;path&lt;/b&gt;,but &lt;b&gt;content&lt;/b&gt;"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="返回值为void"><a href="#返回值为void" class="headerlink" title="返回值为void"></a>返回值为void</h2><p>void在普通方法中是没有返回值的意思，但作为请求处理方法并非这样</p>
+<h3 id="方法名默认作为视图名"><a href="#方法名默认作为视图名" class="headerlink" title="方法名默认作为视图名"></a>方法名默认作为视图名</h3><p>当方法没有返回值时，方法中并未指定视图的名称，则默认视图的名称为方法名。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/myshow"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">action</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>直接会去访问的路径是：url=/WEB-INF/page/myshow.jsp</p>
+<p>上面的代码等同于：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/test"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">action</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"myshow"</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="直接响应输出结果"><a href="#直接响应输出结果" class="headerlink" title="直接响应输出结果"></a>直接响应输出结果</h3><p>当方法的返回值为void，但输出流中存在输出内容时，则不会去查找视图，而是将输入流中的内容直接响应到客户端，响应的内容类型是纯文本。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/test"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">action</span><span class="params">(HttpServletResponse response)</span> <span class="keyword">throws</span> IOException</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     response.getWriter().write(<span class="string">"&lt;h2&gt;void method&lt;/h2&gt;"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="返回值为ModelAndView"><a href="#返回值为ModelAndView" class="headerlink" title="返回值为ModelAndView"></a>返回值为ModelAndView</h2><p>Spring MVC中ModelAndView可以同时指定须返回的模型与视图对象或名称。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/test"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">action</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="comment">//1只指定视图</span></span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"myshow"</span>);</span><br><span class="line">        </span><br><span class="line">   <span class="comment">//2分别指定视图与模型</span></span><br><span class="line">   Map&lt;String, Object&gt; model=<span class="keyword">new</span> HashMap&lt;String,Object&gt;();</span><br><span class="line">   model.put(<span class="string">"message"</span>, <span class="string">"ModelAndView action"</span>);</span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"myshow"</span>,model);</span><br><span class="line">        </span><br><span class="line">   <span class="comment">//3同时指定视图与模型</span></span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"myshow"</span>,<span class="string">"message"</span>,<span class="string">"action ModelAndView "</span>);</span><br><span class="line">        </span><br><span class="line">   <span class="comment">//4分开指定视图与模型</span></span><br><span class="line">   ModelAndView modelAndView=<span class="keyword">new</span> ModelAndView();</span><br><span class="line">   <span class="comment">//指定视图名称</span></span><br><span class="line">   modelAndView.setViewName(<span class="string">"myshow"</span>);</span><br><span class="line">   <span class="comment">//添加模型中的对象</span></span><br><span class="line">   modelAndView.addObject(<span class="string">"message"</span>, <span class="string">"&lt;h2&gt;Hello ModelAndView&lt;/h2&gt;"</span>);</span><br><span class="line">   <span class="keyword">return</span> modelAndView;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="返回值为Map"><a href="#返回值为Map" class="headerlink" title="返回值为Map"></a>返回值为Map</h2><p>当返回结果为Map时，相当于只是返回了Model，并未指定具体的视图，返回视图的办法与void是一样的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/myshow"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Map&lt;String, Object&gt; <span class="title">action</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Map&lt;String, Object&gt; model=<span class="keyword">new</span> HashMap&lt;String,Object&gt;();</span><br><span class="line">	model.put(<span class="string">"message"</span>, <span class="string">"Hello Map"</span>);</span><br><span class="line">	model.put(<span class="string">"other"</span>, <span class="string">"more item"</span>);</span><br><span class="line">	<span class="keyword">return</span> model;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="返回值为任意类型"><a href="#返回值为任意类型" class="headerlink" title="返回值为任意类型"></a>返回值为任意类型</h2><h3 id="返回值为基本数据类型"><a href="#返回值为基本数据类型" class="headerlink" title="返回值为基本数据类型"></a>返回值为基本数据类型</h3><p>当返回结果直接为int,double,boolean等基本数据类型时的状态。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/myshow"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Integer <span class="title">action</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="number">123</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>会报500错误:</p>
+<p><code>Request processing failed; nested exception is java.lang.IllegalArgumentException: Invalid handler method return value: 123</code></p>
+<p>如果确实需要直接将基本数据类型返回，则可以使用注解@ReponseBody。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/myshow"</span>)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Integer <span class="title">action</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="number">123</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="当返值为自定义类型"><a href="#当返值为自定义类型" class="headerlink" title="当返值为自定义类型"></a>当返值为自定义类型</h3><p>当返回值为自定义类型时Spring会把方法认为是视图名称，与返回值为void的类似办法处理URL，但页面中获得数据比较麻烦。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/myshow"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Product <span class="title">action</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     Product product=<span class="keyword">new</span> Product(<span class="number">1</span>,<span class="string">"iPhone"</span>,<span class="number">1000</span>);</span><br><span class="line">     <span class="keyword">return</span> product;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果存在myshow对应的视图，页面还是可以正常显示。</p>
+<p>如果在action上添加@ResponseBody注解则返回的是Product本身，而非视图，Spring会选择一个合适的方式解析对象，默认是json。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/myshow"</span>)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Product <span class="title">action</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     Product product=<span class="keyword">new</span> Product(<span class="number">1</span>,<span class="string">"iPhone"</span>,<span class="number">1000</span>);</span><br><span class="line">     <span class="keyword">return</span> product;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="返回值为Model类型"><a href="#返回值为Model类型" class="headerlink" title="返回值为Model类型"></a>返回值为Model类型</h2><p>该接口Model定义在包org.springframework.ui下，model对象会用于页面渲染，视图路径使用方法名，与void类似。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/myshow"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Model <span class="title">action</span><span class="params">(Model model)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    model.addAttribute(<span class="string">"message"</span>, <span class="string">"返回类型为org.springframework.ui.Model"</span>);</span><br><span class="line">    <span class="keyword">return</span> model;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="ResponseBody"><a href="#ResponseBody" class="headerlink" title="@ResponseBody"></a>@ResponseBody</h1><p>使用@ResponseBody不仅需要相应的包依赖，而且还需要在springmvc.xml中配置文件。一旦配错，就会各种报错，实在是麻烦。</p>
+<h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>@responseBody注解的作用是将controller的方法返回的对象通过适当的转换器转换为指定的格式之后，写入到response对象的body区，通常用来返回JSON数据或者是XML数据。</p>
+<p>注意：在使用此注解之后不会再走视图处理器，而是直接将数据写入到输入流中，他的效果等同于通过response对象输出指定格式的数据。</p>
+<p>@ResponseBody是作用在方法上的，@ResponseBody 表示该方法的返回结果直接写入 HTTP response body 中，一般在异步获取数据时使用【也就是AJAX】。<br>注意：在使用 @RequestMapping后，返回值通常解析为跳转路径，但是加上 @ResponseBody 后返回结果不会被解析为跳转路径，而是直接写入 HTTP response body 中。 比如异步获取 json 数据，加上 @ResponseBody 后，会直接返回 json 数据。@RequestBody 将 HTTP 请求正文插入方法中，使用适合的 HttpMessageConverter 将请求体写入某个对象。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>1.导入第三方的jackson-annotations.jar、jackson-core.jar、jackson-databind.jar</p>
+<p>2.在该配置文件上面的beans中添加</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xmlns:mvc="http://www.springframework.org/schema/mvc" </span><br><span class="line">xsi:schemaLocation="http://www.springframework.org/schema/mvc </span><br><span class="line">http://www.springframework.org/schema/mvc/spring-mvc.xsd"</span><br></pre></td></tr></table></figure>
+<p>3.Spring配置文件添加</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--json解析器配置--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--将字符串转换为json--&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"messageConverters"</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"stringConverter"</span> <span class="attr">class</span>=<span class="string">"org.springframework.http.converter.StringHttpMessageConverter"</span>&gt;</span></span><br><span class="line">                 <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"supportedMediaTypes"</span>&gt;</span></span><br><span class="line">                     <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">                         <span class="comment">&lt;!-- 这里顺序不能反，一定先写text/html,不然ie下出现下载提示 --&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="name">value</span>&gt;</span>text/html;charset=UTF-8<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="name">value</span>&gt;</span>application/json;charset=UTF-8<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="name">value</span>&gt;</span>text/plain;charset=UTF-8<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                     <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">                 <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"jsonConverter"</span> <span class="attr">class</span>=<span class="string">"org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"</span>&gt;</span></span><br><span class="line">                 <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"supportedMediaTypes"</span>&gt;</span></span><br><span class="line">                     <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">                         <span class="comment">&lt;!-- 这里顺序不能反，一定先写text/html,不然ie下出现下载提示 --&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="name">value</span>&gt;</span>text/html;charset=UTF-8<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="name">value</span>&gt;</span>application/json;charset=UTF-8<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="name">value</span>&gt;</span>text/plain;charset=UTF-8<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                     <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">                 <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2020/03/29/Spring基础/" data-toggle="tooltip" data-placement="top" title="Spring基础">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2020/03/26/SpringMVC的配置/" data-toggle="tooltip" data-placement="top" title="SpringMVC的配置">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        This is copyright.
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                <!--  css & js -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Action参数类型"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Action参数类型</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#自动参数映射"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">自动参数映射</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基本数据类型"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">基本数据类型</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#自定义数据类型"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text">自定义数据类型</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#复杂数据类型"><span class="toc-nav-number">1.1.3.</span> <span class="toc-nav-text">复杂数据类型</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#数组"><span class="toc-nav-number">1.1.4.</span> <span class="toc-nav-text">数组</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#List集合类型"><span class="toc-nav-number">1.1.5.</span> <span class="toc-nav-text">List集合类型</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Map集合类型"><span class="toc-nav-number">1.1.6.</span> <span class="toc-nav-text">Map集合类型</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#RequestParam参数绑定"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">@RequestParam参数绑定</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基本数据类型绑定与注解属性"><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text">基本数据类型绑定与注解属性</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#List与数组绑定基本数据类型"><span class="toc-nav-number">1.2.2.</span> <span class="toc-nav-text">List与数组绑定基本数据类型</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Action返回值类型"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Action返回值类型</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#返回值为String"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">返回值为String</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#String作为视图名称"><span class="toc-nav-number">2.1.1.</span> <span class="toc-nav-text">String作为视图名称</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#String作为内容输出"><span class="toc-nav-number">2.1.2.</span> <span class="toc-nav-text">String作为内容输出</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#返回值为void"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">返回值为void</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#方法名默认作为视图名"><span class="toc-nav-number">2.2.1.</span> <span class="toc-nav-text">方法名默认作为视图名</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#直接响应输出结果"><span class="toc-nav-number">2.2.2.</span> <span class="toc-nav-text">直接响应输出结果</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#返回值为ModelAndView"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">返回值为ModelAndView</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#返回值为Map"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">返回值为Map</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#返回值为任意类型"><span class="toc-nav-number">2.5.</span> <span class="toc-nav-text">返回值为任意类型</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#返回值为基本数据类型"><span class="toc-nav-number">2.5.1.</span> <span class="toc-nav-text">返回值为基本数据类型</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#当返值为自定义类型"><span class="toc-nav-number">2.5.2.</span> <span class="toc-nav-text">当返值为自定义类型</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#返回值为Model类型"><span class="toc-nav-number">2.6.</span> <span class="toc-nav-text">返回值为Model类型</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#ResponseBody"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">@ResponseBody</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#简单介绍"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">简单介绍</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#配置"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">配置</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Java框架" title="Java框架">Java框架</a>
+                        
+                          <a class="tag" href="/tags/#SpringMVC" title="SpringMVC">SpringMVC</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="#" target="_blank">Other</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; QJY 2020 
+                    <br>
+                   
+                    <!--<a href="https://github.com/dusign/hexo-theme-snail" target="_blank" rel="noopener">
+                        <i>snail</i>
+                    </a> 
+                    | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0"
+                        width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=dusign&repo=hexo-theme-snail&type=star&count=true">
+                    </iframe>
+                    -->
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://dusign.net/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;🌱&quot; ,&quot;just do it&quot; ,&quot;🍀&quot; ,&quot;TY&quot;]' color='[&quot;rgb(121,93,179)&quot; ,&quot;rgb(76,180,231)&quot; ,&quot;rgb(184,90,154)&quot; ,&quot;rgb(154,190,254)&quot;]'></script>
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>

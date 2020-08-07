@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="keyword"  content="Ty, blog">
+    <link rel="shortcut icon" href="/img/man1.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          Spring基础 - Ty&#39;blog
+        
+    </title>
+
+    <link rel="canonical" href="https://dusign.net/2020/03/29/Spring基础/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-dark.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-dark.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('head.jpg')
+                /*post*/
+            
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/Just-do-it-white.png');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Java框架" title="Java框架">Java框架</a>
+                            
+                              <a class="tag" href="/tags/#Spring" title="Spring">Spring</a>
+                            
+                        </div>
+                        <h1>Spring基础</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by QJY on
+                            2020-03-29
+                        </span>
+
+                        
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                Words <span class="post-count">2k</span> and
+                                Reading Time <span class="post-count">8</span> Minutes
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-dark.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-dark.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">TY&#39;BLOG</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/categories/">Categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/photography/">Photography</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="Spring简介"><a href="#Spring简介" class="headerlink" title="Spring简介"></a>Spring简介</h1><p>Spring是一个基于IOC和AOP的结构J2EE系统的框架</p>
+<h2 id="Spring的作用"><a href="#Spring的作用" class="headerlink" title="Spring的作用"></a>Spring的作用</h2><ol>
+<li>用来整合其他框架，可以让程序的结构更为松散，实现低耦合</li>
+<li>简化事务控制，实现声明式事务(相对于编程式事务来言)</li>
+</ol>
+<h2 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h2><h3 id="IOC-amp-DI"><a href="#IOC-amp-DI" class="headerlink" title="IOC&amp;DI"></a>IOC&amp;DI</h3><p>IOC（Inversion Of Control）反转控制 是Spring的基础。指将某一类对象的控制权（对象创建和方法调用）交给外部容器来负责。</p>
+<p>DI（Dependency Inject）依赖注入。对象依赖的属性，由容器给此属性赋值的过程。</p>
+<h3 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h3><p>AOP（Aspect Oriented Program）面向切面编程。</p>
+<p>首先，在面向切面编程的思想里面，把功能分为核心业务功能，和周边功能。</p>
+<p>所谓的核心业务，比如登陆，增加数据，删除数据都叫核心业务。</p>
+<p>所谓的周边功能，比如性能统计，日志，事务管理等等。</p>
+<p>周边功能在Spring的面向切面编程AOP思想里，即被定义为切面。</p>
+<p>在面向切面编程AOP的思想里面，核心业务功能和切面功能分别独立进行开发<br>然后把切面功能和核心业务功能 “编织” 在一起，这就叫AOP。</p>
+<h1 id="注入对象"><a href="#注入对象" class="headerlink" title="注入对象"></a>注入对象</h1><p>在src目录下新建applicationContext.xml文件,applicationContext.xml是Spring的核心配置文件。Spring配置文件是一个或多个标准的XML文档，<br>applicationContext.xml是Spring的默认配置文件，当容器启动时找不到指定的配置文档时，将会尝试加载这个默认的配置文件。</p>
+<h1 id="Spring中对象创建"><a href="#Spring中对象创建" class="headerlink" title="Spring中对象创建"></a>Spring中对象创建</h1><h2 id="空参的构造方法"><a href="#空参的构造方法" class="headerlink" title="空参的构造方法"></a>空参的构造方法</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"user"</span> <span class="attr">class</span>=<span class="string">"com.bean.User"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">class</span>=<span class="string">"com.bean.User"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>name值可以使用#、@、$、&amp;、*等特殊字符，而id中则不能,只能含有字母。</p>
+<h2 id="静态工厂方式"><a href="#静态工厂方式" class="headerlink" title="静态工厂方式"></a>静态工厂方式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> class <span class="title">UserFactory</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//静态的方法，返回Bean对象</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Bean <span class="title">createStaticUserFactory</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Bean();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>&lt;bean name=&quot;user&quot; factory-method=&quot;createStaticUserFactory&quot;  class=&quot;com.factory.UserFactory&quot;&gt;&lt;/bean&gt;</code></p>
+<h2 id="实例工厂方式"><a href="#实例工厂方式" class="headerlink" title="实例工厂方式"></a>实例工厂方式</h2><p>实例工厂创建首先要创建工厂的对象</p>
+<p>faactory-bean：工厂的对象</p>
+<p>factory-method：工厂的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> class <span class="title">UserFactory</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//普通方法，返回Bean对象</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Bean <span class="title">createUserFactory</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Bean();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"userFactory"</span> <span class="attr">class</span>=<span class="string">"com.factory.UserFactory"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">factory-bean</span>=<span class="string">"userFactory"</span> <span class="attr">factory-method</span>=<span class="string">"createUserFactory"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="spring中属性注入"><a href="#spring中属性注入" class="headerlink" title="spring中属性注入"></a>spring中属性注入</h1><h2 id="set方法注入"><a href="#set方法注入" class="headerlink" title="set方法注入"></a>set方法注入</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"bean实例名称"</span> <span class="attr">class</span>=<span class="string">"bean类全名"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"bean类中的属性名称"</span> <span class="attr">value</span>=<span class="string">"直接指定属性值"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--引用对象类型注入，ref表示需要引用其他的对象 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"bean类中的属性名称"</span> <span class="attr">ref</span>=<span class="string">"要引入的bean实例名称"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="构造方法注入"><a href="#构造方法注入" class="headerlink" title="构造方法注入"></a>构造方法注入</h2><p>index：表示参数的索引顺序从0开始</p>
+<p>type：表示参数的类型</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"bean实例名称"</span> <span class="attr">class</span>=<span class="string">"bean类全名"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">value</span>=<span class="string">"属性值"</span> <span class="attr">index</span>=<span class="string">"0"</span> <span class="attr">type</span>=<span class="string">"java.lang.String"</span> &gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">ref</span>=<span class="string">"要引入的bean实例名称"</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="p名称空间注入"><a href="#p名称空间注入" class="headerlink" title="p名称空间注入"></a>p名称空间注入</h2><p><code>xmlns:p=&quot;http://www.springframework.org/schema/p&quot;</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"bean实例名称"</span> <span class="attr">class</span>=<span class="string">"bean类全名"</span> <span class="attr">p:name</span>=<span class="string">"属性值"</span> <span class="attr">p:</span>属性名<span class="attr">-ref</span>=<span class="string">"要引入的bean实例名称"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="复杂的类型注入"><a href="#复杂的类型注入" class="headerlink" title="复杂的类型注入"></a>复杂的类型注入</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Object[] arr;<span class="comment">// 数组类型注入方式</span></span><br><span class="line">	<span class="keyword">private</span> List list;<span class="comment">// 集合类型注入方式</span></span><br><span class="line">	<span class="keyword">private</span> Map map;<span class="comment">// map集合</span></span><br><span class="line">	<span class="keyword">private</span> Properties properties;<span class="comment">// properties类型</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="数组注入"><a href="#数组注入" class="headerlink" title="数组注入"></a>数组注入</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"demo"</span> <span class="attr">class</span>=<span class="string">"com.bean.Demo"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"arr"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">value</span>&gt;</span>属性值<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"要引入的bean实例名称"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">array</span>&gt;</span>	</span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="list集合注入"><a href="#list集合注入" class="headerlink" title="list集合注入"></a>list集合注入</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"demo"</span> <span class="attr">class</span>=<span class="string">"com.bean.Demo"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"list"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">value</span>&gt;</span>属性值<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"要引入的bean实例名称"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">list</span>&gt;</span>	</span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="map注入"><a href="#map注入" class="headerlink" title="map注入"></a>map注入</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"demo"</span> <span class="attr">class</span>=<span class="string">"com.bean.Demo"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"map"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">map</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">""</span>  <span class="attr">value</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">entry</span> <span class="attr">key-ref</span>=<span class="string">""</span> <span class="attr">value-ref</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">map</span>&gt;</span>	</span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="properties注入"><a href="#properties注入" class="headerlink" title="properties注入"></a>properties注入</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"demo"</span> <span class="attr">class</span>=<span class="string">"com.bean.Demo"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"properties"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">properties</span>&gt;</span>	</span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="AOP编程步骤"><a href="#AOP编程步骤" class="headerlink" title="AOP编程步骤"></a>AOP编程步骤</h1><ol>
+<li>定义普通业务组件</li>
+<li>定义切入点，一个切入点可能横切多个业务组件</li>
+<li>定义增强处理，增强处理就是在AOP框架为普通业务组件织入的处理动作<br>所以进行AOP编程的关键就是定义切入点和定义增强处理，一旦定义了合适的切入点和增强处理，AOP框架将自动生成AOP代理，即：代理对象的方法=增强处理+被代理对象的方法。</li>
+</ol>
+<p>spring中基于XML的AOP配置步骤<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"目标对象名称"</span> <span class="attr">class</span>=<span class="string">"目标对象类全名"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"切面实例名称"</span> <span class="attr">class</span>=<span class="string">"切面类全名"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">		配置切入点表达式 id属性用于指定表达式的唯一标识。expression属性用于指定表达式内容</span></span><br><span class="line"><span class="comment">        此标签写在aop:aspect标签内部只能当前切面使用。</span></span><br><span class="line"><span class="comment">        它还可以写在aop:aspect外面，此时就变成了所有切面可用</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"切入点名称"</span> <span class="attr">expression</span>=<span class="string">"切入点正则表达式 "</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"切面id"</span> <span class="attr">ref</span>=<span class="string">"要引入的切面实例名称"</span>&gt;</span>   </span><br><span class="line">    <span class="comment">&lt;!--aspect里面有一个order属性，order属性的数字就是横切关注点的顺序--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"切面类中用做前置通知的方法名"</span> <span class="attr">pointcut-ref</span>=<span class="string">"切入点名称"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">aop:after-returning</span> <span class="attr">method</span>=<span class="string">"切面类中用做前置通知的方法名"</span> <span class="attr">pointcut-ref</span>=<span class="string">"切入点名称"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">aop:after-throwing</span> <span class="attr">method</span>=<span class="string">"切面类中用做异常通知的方法名"</span> <span class="attr">pointcut-ref</span>=<span class="string">"切入点名称"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">aop:after</span> <span class="attr">method</span>=<span class="string">"切面类中用做最终通知的方法名"</span> <span class="attr">pointcut-ref</span>=<span class="string">"切入点名称"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">method</span>=<span class="string">"切面类中用做环绕通知的方法名"</span> <span class="attr">pointcut-ref</span>=<span class="string">"切入点名称"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure><br>环绕通知的问题：当配置了环绕通知之后，切入点方法没有执行，而通知执行了</p>
+<p>分析：通过对比动态代理中的环绕通知代码，发现动态代理的环绕通知有明确的切入点方法调用，而我们的代码中没有</p>
+<p>解决：spring框架为我们提供了一个接口：ProceedingJoinPoint。该接口有一个方法proceed()，此方法就相当于明确的调用切入点方法，该方法可以作为环绕通知的方法参数，在程序执行时，spring框架会为我们提供接口的实现类供我们使用。</p>
+<p>环绕通知可以理解为Spring提供的一种非配置的自定义的通知类型，是通过代码的方式完成。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">log</span><span class="params">(ProceedingJoinPoint joinPoint)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"start log:"</span> + joinPoint.getSignature().getName());</span><br><span class="line">        Object object = joinPoint.proceed();</span><br><span class="line">        System.out.println(<span class="string">"end log:"</span> + joinPoint.getSignature().getName());</span><br><span class="line">        <span class="keyword">return</span> object;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="事务管理器"><a href="#事务管理器" class="headerlink" title="事务管理器"></a>事务管理器</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"事务管理器实例名称"</span> <span class="attr">class</span>=<span class="string">"事务管理器类全名"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"数据源属性名称"</span> <span class="attr">ref</span>=<span class="string">"要引用的数据源实例名称"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置一个事务通知--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tx:advice</span> <span class="attr">id</span>=<span class="string">"事务通知名称"</span> <span class="attr">transaction-manager</span>=<span class="string">"事务管理器实例名称"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">tx:attribute</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--方法以get开头的，不使用事务--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"get*"</span> <span class="attr">read-only</span>=<span class="string">"true"</span> <span class="attr">propagation</span>=<span class="string">"NOT_SUPPORTED"</span>/&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--其他方法以默认事务进行--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"*"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">tx:attribute</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tx:advice</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--使用aop技术实现事务管理--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"事务切入点名称"</span><span class="attr">expression</span>=<span class="string">"事务切入点正则表达式"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">id</span>=<span class="string">"事务通知名称"</span><span class="attr">pointcut-ref</span>=<span class="string">"事务切入点名称"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2020/03/31/Spring常用注解/" data-toggle="tooltip" data-placement="top" title="Spring常用注解">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2020/03/28/SpringMVC控制器Action方法详解/" data-toggle="tooltip" data-placement="top" title="SpringMVC控制器Action方法详解">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        This is copyright.
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                <!--  css & js -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Spring简介"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Spring简介</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Spring的作用"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">Spring的作用</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#核心思想"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">核心思想</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#IOC-amp-DI"><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text">IOC&amp;DI</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#AOP"><span class="toc-nav-number">1.2.2.</span> <span class="toc-nav-text">AOP</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#注入对象"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">注入对象</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Spring中对象创建"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">Spring中对象创建</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#空参的构造方法"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">空参的构造方法</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#静态工厂方式"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">静态工厂方式</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#实例工厂方式"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">实例工厂方式</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#spring中属性注入"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">spring中属性注入</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#set方法注入"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">set方法注入</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#构造方法注入"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">构造方法注入</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#p名称空间注入"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">p名称空间注入</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#复杂的类型注入"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">复杂的类型注入</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#数组注入"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">数组注入</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#list集合注入"><span class="toc-nav-number">5.2.</span> <span class="toc-nav-text">list集合注入</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#map注入"><span class="toc-nav-number">5.3.</span> <span class="toc-nav-text">map注入</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#properties注入"><span class="toc-nav-number">5.4.</span> <span class="toc-nav-text">properties注入</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#AOP编程步骤"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">AOP编程步骤</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#事务管理器"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">事务管理器</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Java框架" title="Java框架">Java框架</a>
+                        
+                          <a class="tag" href="/tags/#Spring" title="Spring">Spring</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="#" target="_blank">Other</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; QJY 2020 
+                    <br>
+                   
+                    <!--<a href="https://github.com/dusign/hexo-theme-snail" target="_blank" rel="noopener">
+                        <i>snail</i>
+                    </a> 
+                    | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0"
+                        width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=dusign&repo=hexo-theme-snail&type=star&count=true">
+                    </iframe>
+                    -->
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://dusign.net/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;🌱&quot; ,&quot;just do it&quot; ,&quot;🍀&quot; ,&quot;TY&quot;]' color='[&quot;rgb(121,93,179)&quot; ,&quot;rgb(76,180,231)&quot; ,&quot;rgb(184,90,154)&quot; ,&quot;rgb(154,190,254)&quot;]'></script>
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>

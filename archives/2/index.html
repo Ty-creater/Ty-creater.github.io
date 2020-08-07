@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="keyword"  content="Ty, blog">
+    <link rel="shortcut icon" href="/img/man1.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          Ty&#39;blog
+        
+    </title>
+
+    <link rel="canonical" href="https://dusign.net/archives/2/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-dark.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-dark.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('/img/header_img/1.jpg') 
+                /*config*/
+            
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/Just-do-it-white.png');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="site-heading">
+                        <h1>TY&#39;BLOG</h1>
+                        <!--<hr class="small">-->
+                        <span id="subdusi" class="subheading">At the bottom of the well, it is destined to see only the sky at the wellhead. However, the starting point only affects the process of reaching your peak and does not determine the height you reach.</span>
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-dark.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-dark.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">TY&#39;BLOG</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/categories/">Categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/photography/">Photography</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+                <!-- Top -->
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+
+<!-- Main Content -->
+
+    
+
+        <div class="post-preview">
+
+            <a href="/2020/03/29/Spring基础/">
+                <h2 class="post-title">
+                    Spring基础
+                </h2>
+                <h3 class="post-subtitle">
+                    
+                </h3>
+                <div class="post-content-preview">
+                    Spring简介Spring是一个基于IOC和AOP的结构J2EE系统的框架
+Spring的作用
+用来整合其他框架，可以让程序的结构更为松散，实现低耦合
+简化事务控制，实现声明式事务(相对于编程式事务来言)
+
+核心思想IOC&amp;DIIOC（Inversion Of Control）反转控制 是Spring的基础。指将某一类对象的控制权（对象创建和方法调用）交给外部容器来负责。
+DI（D......
+                </div>
+            </a>
+            
+                <p class="post-meta" style="margin: 10px 0;">
+                    Posted by QJY on
+                    2020-03-29
+                </p>
+                <div class="tags">
+                    
+                      <a href="/tags/#Java框架" title="Java框架">Java框架</a>
+                    
+                      <a href="/tags/#Spring" title="Spring">Spring</a>
+                    
+                </div>
+            
+
+        </div>
+        <hr>
+
+    
+
+    
+
+        <div class="post-preview">
+
+            <a href="/2020/03/28/SpringMVC控制器Action方法详解/">
+                <h2 class="post-title">
+                    SpringMVC控制器Action方法详解
+                </h2>
+                <h3 class="post-subtitle">
+                    
+                </h3>
+                <div class="post-content-preview">
+                    Action参数类型自动参数映射基本数据类型方法的参数可以是任意基本数据类型，如果方法参数名与http中请求的参数名称相同时会进行自动映射。
+12345@RequestMapping("/test")public String action(Model model, String name) &#123;    model.addAttribute("message",name);    r......
+                </div>
+            </a>
+            
+                <p class="post-meta" style="margin: 10px 0;">
+                    Posted by QJY on
+                    2020-03-28
+                </p>
+                <div class="tags">
+                    
+                      <a href="/tags/#Java框架" title="Java框架">Java框架</a>
+                    
+                      <a href="/tags/#SpringMVC" title="SpringMVC">SpringMVC</a>
+                    
+                </div>
+            
+
+        </div>
+        <hr>
+
+    
+
+    
+
+        <div class="post-preview">
+
+            <a href="/2020/03/26/SpringMVC的配置/">
+                <h2 class="post-title">
+                    SpringMVC的配置
+                </h2>
+                <h3 class="post-subtitle">
+                    
+                </h3>
+                <div class="post-content-preview">
+                    SpringMVC简介SpringMVC框架是以请求为驱动，围绕Servlet设计，将请求发给控制器，然后通过模型对象，分派器来展示请求结果视图。其中核心类DispatcherServlet，它是一个Servlet，顶层是实现的Servlet接口。
+SpringMVC流程图详解
+
+用户发送请求至 前端控制器DispatcherServlet。
+前端控制器DispatcherServlet收到......
+                </div>
+            </a>
+            
+                <p class="post-meta" style="margin: 10px 0;">
+                    Posted by QJY on
+                    2020-03-26
+                </p>
+                <div class="tags">
+                    
+                      <a href="/tags/#Java框架" title="Java框架">Java框架</a>
+                    
+                      <a href="/tags/#SpringMVC" title="SpringMVC">SpringMVC</a>
+                    
+                </div>
+            
+
+        </div>
+        <hr>
+
+    
+
+    
+
+        <div class="post-preview">
+
+            <a href="/2020/03/22/Hibernate的配置与使用/">
+                <h2 class="post-title">
+                    Hibernate的配置与使用
+                </h2>
+                <h3 class="post-subtitle">
+                    
+                </h3>
+                <div class="post-content-preview">
+                    Hibernate简介Hibernate是一个开放源代码的对象关系映射框架，它对JDBC进行了非常轻量级的对象封装，它将POJO与数据库表建立映射关系，是一个全自动的orm框架，hibernate可以自动生成SQL语句，自动执行。
+ORM对象关系映射（英语：Object Relation Mapping，简称ORM，或O/RM，或O/R mapping），是一种程序技术，用于实现面向对象编程......
+                </div>
+            </a>
+            
+                <p class="post-meta" style="margin: 10px 0;">
+                    Posted by QJY on
+                    2020-03-22
+                </p>
+                <div class="tags">
+                    
+                      <a href="/tags/#Mysql" title="Mysql">Mysql</a>
+                    
+                      <a href="/tags/#Java框架" title="Java框架">Java框架</a>
+                    
+                </div>
+            
+
+        </div>
+        <hr>
+
+    
+
+    
+
+        <div class="post-preview">
+
+            <a href="/2020/03/16/PyInstaller安装和使用教程/">
+                <h2 class="post-title">
+                    PyInstaller安装和使用教程
+                </h2>
+                <h3 class="post-subtitle">
+                    
+                </h3>
+                <div class="post-content-preview">
+                    PyInstalle的功能在创建了独立应用（自包含该应用的依赖包）之后，还可以使用 PyInstaller 将 Python 程序生成可直接运行的程序，这个程序就可以被分发到对应的 Windows 或 Mac OS X 平台上运行。
+安装 PyInstalle安装 PyInstaller 模块与安装其他 Python 模块一样，使用 pip 命令安装即可。在命令行输入如下命令：
+pip in......
+                </div>
+            </a>
+            
+                <p class="post-meta" style="margin: 10px 0;">
+                    Posted by QJY on
+                    2020-03-16
+                </p>
+                <div class="tags">
+                    
+                      <a href="/tags/#Python" title="Python">Python</a>
+                    
+                </div>
+            
+
+        </div>
+        <hr>
+
+    
+
+    
+
+        <div class="post-preview">
+
+            <a href="/2020/03/11/HTTP协议学习小记/">
+                <h2 class="post-title">
+                    HTTP协议学习小记
+                </h2>
+                <h3 class="post-subtitle">
+                    
+                </h3>
+                <div class="post-content-preview">
+                    协议概念HTTP 超文本传输协议 Hyper Text Transfer Protocol
+协议就是不同的应用程序之间按照事先做好的约定进行的通信。
+浏览器和WEB服务器之间，使用的就是一种叫做HTTP的协议。 这样是BS (Browser Server )架构模型的基础。
+HTTP协议由请求和响应两种类型组成
+
+调试工具对于HTTP协议的学习，我们将借助火狐浏览器FIREFOX的调试工具或......
+                </div>
+            </a>
+            
+                <p class="post-meta" style="margin: 10px 0;">
+                    Posted by QJY on
+                    2020-03-11
+                </p>
+                <div class="tags">
+                    
+                      <a href="/tags/#HTTP协议" title="HTTP协议">HTTP协议</a>
+                    
+                </div>
+            
+
+        </div>
+        <hr>
+
+    
+
+    
+
+        <div class="post-preview">
+
+            <a href="/2020/03/10/两个月的作品展示/">
+                <h2 class="post-title">
+                    两个月的作品展示
+                </h2>
+                <h3 class="post-subtitle">
+                    
+                </h3>
+                <div class="post-content-preview">
+                    用户登录jsp52第一个发布到云服务器的Web项目，很简单，但是实现了最基础的用户登录的操作。
+如果你感兴趣，可以访问该地址。
+用户登录升级版jsp6用户登录jsp52的升级版，样式比jsp52要好一点，不过也很简单。主要是加入了Cookie来保存用户的信息。
+如果你感兴趣，可以访问该地址。
+香水perfume一个提供购买香水的网页，商品都是从数据库中调用。有购物车功能。是一个很完整也是目前......
+                </div>
+            </a>
+            
+                <p class="post-meta" style="margin: 10px 0;">
+                    Posted by QJY on
+                    2020-03-10
+                </p>
+                <div class="tags">
+                    
+                      <a href="/tags/#show" title="show">show</a>
+                    
+                </div>
+            
+
+        </div>
+        <hr>
+
+    
+
+    
+
+        <div class="post-preview">
+
+            <a href="/2020/02/27/Navicat连接服务器MySQL遇到的问题/">
+                <h2 class="post-title">
+                    Navicat连接服务器MySQL遇到的问题
+                </h2>
+                <h3 class="post-subtitle">
+                    
+                </h3>
+                <div class="post-content-preview">
+                    在云服务器安装好MySQL之后，使用本地Navicat连接服务器的MySQL遇到的问题
+报2003错误
+原因原因是没有开放云服务器的3306的端口
+解决方法只要在控制台的安全组添加3306的安全组规则就可以了。
+
+加入安全组之后，确实不会报2003的错误了，但是又遇到了一个新的问题，报了1130的错误。
+报1130错误
+原因出现这种情况是因为mysql服务器出于安全考虑，默认只允许本地登录数......
+                </div>
+            </a>
+            
+                <p class="post-meta" style="margin: 10px 0;">
+                    Posted by QJY on
+                    2020-02-27
+                </p>
+                <div class="tags">
+                    
+                      <a href="/tags/#Mysql" title="Mysql">Mysql</a>
+                    
+                      <a href="/tags/#Navicat" title="Navicat">Navicat</a>
+                    
+                </div>
+            
+
+        </div>
+        <hr>
+
+    
+
+    
+
+        <div class="post-preview">
+
+            <a href="/2020/02/26/Java连接MySQL数据库——步骤和代码/">
+                <h2 class="post-title">
+                    Java连接MySQL数据库——步骤和代码
+                </h2>
+                <h3 class="post-subtitle">
+                    
+                </h3>
+                <div class="post-content-preview">
+                    前提准备工具：MySQL连接驱动：mysql-connector-java-5.1.27.jar
+加载驱动在工程目录中找到lib文件夹，将下载好的JDBC放到该文件夹下
+在java build path中的Libraries分页中选择Add JARs…，选择刚才添加的JDBC
+实际操作数据包准备：在数据库sqltestdb中创建如下数据表emp
+连接数据库并读取数据
+运行结果
+增加数据
+更新......
+                </div>
+            </a>
+            
+                <p class="post-meta" style="margin: 10px 0;">
+                    Posted by QJY on
+                    2020-02-26
+                </p>
+                <div class="tags">
+                    
+                      <a href="/tags/#Mysql" title="Mysql">Mysql</a>
+                    
+                      <a href="/tags/#Java" title="Java">Java</a>
+                    
+                </div>
+            
+
+        </div>
+        <hr>
+
+    
+
+    
+
+        <div class="post-preview">
+
+            <a href="/2020/02/23/寒假JSP学习体会/">
+                <h2 class="post-title">
+                    寒假JSP学习体会
+                </h2>
+                <h3 class="post-subtitle">
+                    
+                </h3>
+                <div class="post-content-preview">
+                    你们听说过大学生还有寒假作业吗，我没听说过，但是已经领教过了。我们老师在寒假开始前就在教学平台发布了大量作业，时间跨度大半个寒假。当然我还是紧跟着进度条的，眼看着要做完最后一个作业了。 万万没想到的是，进度条竟然学会了“自己长大”。不过现在呢，也习惯了。冷静想想，说实话寒假还是挺充实的。
+以下就是跟着老师的脚步，在imooc上学习的课程。
+
+
+
+emm..感觉上是收获满满。但说句实话，这些知......
+                </div>
+            </a>
+            
+                <p class="post-meta" style="margin: 10px 0;">
+                    Posted by QJY on
+                    2020-02-23
+                </p>
+                <div class="tags">
+                    
+                      <a href="/tags/#学习体会" title="学习体会">学习体会</a>
+                    
+                </div>
+            
+
+        </div>
+        <hr>
+
+    
+
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+        <li class="previous">
+            <a href="/">&larr; Newer Posts</a>
+        </li>
+    
+    
+</ul>
+
+
+            </div>
+
+            <!-- Sidebar Container -->
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+        
+<!--
+<h5>SEARCH</h5>
+<div class="search-article" class="tags">
+	<input id="search-kw" type="text" name="search_article" placeholder="Enter keywords for search" />
+	<div class="search-img">
+		<img 
+			src="/img/search.png" 
+			alt="search" 
+			onMouseOver="this.src='/img/search-focus.png'" 
+			onMouseOut="this.src='/img/search.png'"/>
+	</div>
+</div>-->
+
+<h5>SEARCH</h5>
+<div id="site_search">
+	<div class="form-group">
+		<input type="text" id="local-search-input" name="q" results="0" placeholder="search" class="st-search-input st-default-search-input form-control"/>
+	</div>  
+	<div id="local-search-result"></div>
+</div>
+
+        <hr>
+    
+        <!-- Featured Tags -->
+
+<section>
+    <!-- no hr -->
+    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+            
+            <a href="/tags/#Mysql" title="Mysql" rel="4">Mysql</a>
+            
+        
+            
+        
+            
+            <a href="/tags/#Java" title="Java" rel="3">Java</a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+            <a href="/tags/#Java框架" title="Java框架" rel="6">Java框架</a>
+            
+        
+            
+            <a href="/tags/#SpringMVC" title="SpringMVC" rel="2">SpringMVC</a>
+            
+        
+            
+            <a href="/tags/#Spring" title="Spring" rel="2">Spring</a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+            <a href="/tags/#Linux" title="Linux" rel="2">Linux</a>
+            
+        
+            
+        
+    </div>
+</section>
+
+        <hr>
+    
+        <!-- Short About -->
+<section class="visible-md visible-lg">
+    <h5><a href="/about/">ABOUT ME</a></h5>
+    <div class="short-about">
+
+        
+            <img id = "avatar_pic" src="/img/man.jpg" />
+        
+
+        
+            <p>Welcome to visit, I&#39;m QJY!</p>
+        
+
+        <!-- SNS Link -->
+        <ul class="list-inline">
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+        </ul>
+    </div>
+</section>
+        <hr>
+    
+        
+  <h5>RECENT POSTS</h5>
+  <div class="widget">
+    <ul>
+      
+        <li>
+          <a href="/2020/05/13/Redis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">Redis安装与配置</a>
+        </li>
+      
+        <li>
+          <a href="/2020/04/29/Linux%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/">Linux基础总结</a>
+        </li>
+      
+        <li>
+          <a href="/2020/04/19/CentOS7%E5%AE%89%E8%A3%85JDK%E6%80%BB%E7%BB%93/">CentOS7安装JDK总结</a>
+        </li>
+      
+        <li>
+          <a href="/2020/04/17/%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%8F%8D%E5%B0%84%E5%9F%BA%E7%A1%80/">注解与反射基础</a>
+        </li>
+      
+        <li>
+          <a href="/2020/04/16/Http406%E9%94%99%E8%AF%AF%E6%80%BB%E7%BB%93/">Http406错误总结</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        <hr>
+    
+        <!-- Friends Blog -->
+
+<h5>FRIENDS</h5>
+<ul class="list-inline">
+
+    
+        <li><a href="#" target="_blank">Other</a></li>
+    
+</ul>
+
+        <hr>
+    
+        
+    <h5>ARCHIVES</h5>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+
+        <hr>
+    
+        <!-- Categories -->
+
+    <h5>categories</h5>
+    <div class="widget">
+      <ul>
+        
+          <a href="categories/#知识总结"><li>知识总结</li></a>
+        
+          <a href="categories/#作品展示"><li>作品展示</li></a>
+        
+          <a href="categories/#feeling"><li>feeling</li></a>
+        
+          <a href="categories/#问题总结"><li>问题总结</li></a>
+        
+      </ul>
+    </div>
+
+        <hr>
+    
+</div>
+
+        
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; QJY 2020 
+                    <br>
+                   
+                    <!--<a href="https://github.com/dusign/hexo-theme-snail" target="_blank" rel="noopener">
+                        <i>snail</i>
+                    </a> 
+                    | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0"
+                        width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=dusign&repo=hexo-theme-snail&type=star&count=true">
+                    </iframe>
+                    -->
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://dusign.net/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;🌱&quot; ,&quot;just do it&quot; ,&quot;🍀&quot; ,&quot;TY&quot;]' color='[&quot;rgb(121,93,179)&quot; ,&quot;rgb(76,180,231)&quot; ,&quot;rgb(184,90,154)&quot; ,&quot;rgb(154,190,254)&quot;]'></script>
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>
